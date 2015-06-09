@@ -12,5 +12,6 @@
 @interface BarLayer : CALayer
 
 - (id)customInit;
+- (void) updateValueTo: (float)v;
 
 @end

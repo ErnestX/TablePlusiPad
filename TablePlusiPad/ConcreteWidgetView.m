@@ -11,9 +11,6 @@
 #import "BarLayer.h"
 
 @implementation ConcreteWidgetView {
-    float barNumber;
-    float pieNumber; //from 0 to 1
-    
     PieLayer* pieLayer;
     BarLayer* barLayer;
 }
@@ -38,19 +35,13 @@
 
 - (void)updateBarTo: (float) bNum
 {
-    barNumber = bNum;
-    [self updateChats];
+    [barLayer updateValueTo:bNum];
 }
 
 - (void)updatePieTo: (float) pieNum
 {
-    pieNumber = pieNum;
-    [self updateChats];
+    [pieLayer updateValueTo:pieNum];
 }
 
-- (void)updateChats
-{
-    pieLayer.strokeEnd = pieNumber;
-}
 
 @end

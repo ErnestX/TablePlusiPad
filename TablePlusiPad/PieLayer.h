@@ -11,4 +11,6 @@
 
 @interface PieLayer : CAShapeLayer
 
+- (void)updateValueTo:(float)v;
+
 @end

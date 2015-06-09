@@ -24,4 +24,10 @@
     return pl;
 }
 
+- (void)updateValueTo:(float)v
+{
+    //TODO: check validity
+    self.strokeEnd = v;
+}
+
 @end
