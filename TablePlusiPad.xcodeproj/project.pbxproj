@@ -14,6 +14,9 @@
 		CACBBD191B25FB5A004A15BF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CACBBD181B25FB5A004A15BF /* Images.xcassets */; };
 		CACBBD1C1B25FB5A004A15BF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CACBBD1A1B25FB5A004A15BF /* LaunchScreen.xib */; };
 		CACBBD281B25FB5A004A15BF /* TablePlusiPadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CACBBD271B25FB5A004A15BF /* TablePlusiPadTests.m */; };
+		CACBBD371B25FFFD004A15BF /* ConcreteWidgetView.m in Sources */ = {isa = PBXBuildFile; fileRef = CACBBD361B25FFFD004A15BF /* ConcreteWidgetView.m */; };
+		CACBBD3A1B265794004A15BF /* PieLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CACBBD391B265794004A15BF /* PieLayer.m */; };
+		CACBBD3D1B2766E6004A15BF /* BarLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CACBBD3C1B2766E6004A15BF /* BarLayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +43,13 @@
 		CACBBD211B25FB5A004A15BF /* TablePlusiPadTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TablePlusiPadTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CACBBD261B25FB5A004A15BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CACBBD271B25FB5A004A15BF /* TablePlusiPadTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TablePlusiPadTests.m; sourceTree = "<group>"; };
+		CACBBD341B25FCA0004A15BF /* Widget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Widget.h; sourceTree = "<group>"; };
+		CACBBD351B25FFFD004A15BF /* ConcreteWidgetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcreteWidgetView.h; sourceTree = "<group>"; };
+		CACBBD361B25FFFD004A15BF /* ConcreteWidgetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcreteWidgetView.m; sourceTree = "<group>"; };
+		CACBBD381B265794004A15BF /* PieLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieLayer.h; sourceTree = "<group>"; };
+		CACBBD391B265794004A15BF /* PieLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieLayer.m; sourceTree = "<group>"; };
+		CACBBD3B1B2766E6004A15BF /* BarLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarLayer.h; sourceTree = "<group>"; };
+		CACBBD3C1B2766E6004A15BF /* BarLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarLayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +95,13 @@
 				CACBBD101B25FB5A004A15BF /* AppDelegate.m */,
 				CACBBD121B25FB5A004A15BF /* ViewController.h */,
 				CACBBD131B25FB5A004A15BF /* ViewController.m */,
+				CACBBD341B25FCA0004A15BF /* Widget.h */,
+				CACBBD351B25FFFD004A15BF /* ConcreteWidgetView.h */,
+				CACBBD361B25FFFD004A15BF /* ConcreteWidgetView.m */,
+				CACBBD381B265794004A15BF /* PieLayer.h */,
+				CACBBD391B265794004A15BF /* PieLayer.m */,
+				CACBBD3B1B2766E6004A15BF /* BarLayer.h */,
+				CACBBD3C1B2766E6004A15BF /* BarLayer.m */,
 				CACBBD151B25FB5A004A15BF /* Main.storyboard */,
 				CACBBD181B25FB5A004A15BF /* Images.xcassets */,
 				CACBBD1A1B25FB5A004A15BF /* LaunchScreen.xib */,
@@ -219,8 +236,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				CACBBD141B25FB5A004A15BF /* ViewController.m in Sources */,
+				CACBBD371B25FFFD004A15BF /* ConcreteWidgetView.m in Sources */,
+				CACBBD3A1B265794004A15BF /* PieLayer.m in Sources */,
 				CACBBD111B25FB5A004A15BF /* AppDelegate.m in Sources */,
 				CACBBD0E1B25FB5A004A15BF /* main.m in Sources */,
+				CACBBD3D1B2766E6004A15BF /* BarLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

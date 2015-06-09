@@ -7,8 +7,13 @@
 //
 
 #import "ViewController.h"
+#import "ConcreteWidgetView.h"
 
 @interface ViewController ()
+
+@property (weak, nonatomic) IBOutlet UITextField *pieField;
+@property (weak, nonatomic) IBOutlet UITextField *barField;
+@property (weak, nonatomic) IBOutlet UITextField *numField;
 
 @end
 
@@ -22,6 +27,11 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)updateValues:(id)sender {
+    [(ConcreteWidgetView*)[self.view.subviews objectAtIndex:0] updatePieTo:self.pieField.text.doubleValue];
+    [(ConcreteWidgetView*)[self.view.subviews objectAtIndex:0] updateBarTo:self.barField.text.doubleValue];
 }
 
 @end
