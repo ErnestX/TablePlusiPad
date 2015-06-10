@@ -13,5 +13,6 @@
 
 - (void)updatePieTo: (float) pieNum;
 - (void)updateBarTo: (float) bNum;
+- (void)updateNumTo: (float) num;
 
 @end

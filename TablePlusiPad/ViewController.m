@@ -32,6 +32,7 @@
 - (IBAction)updateValues:(id)sender {
     [(ConcreteWidgetView*)[self.view.subviews objectAtIndex:0] updatePieTo:self.pieField.text.doubleValue];
     [(ConcreteWidgetView*)[self.view.subviews objectAtIndex:0] updateBarTo:self.barField.text.doubleValue];
+    [(ConcreteWidgetView*)[self.view.subviews objectAtIndex:0] updateNumTo:self.numField.text.doubleValue];
 }
 
 @end

@@ -9,10 +9,12 @@
 #import "ConcreteWidgetView.h"
 #import "PieLayer.h"
 #import "BarLayer.h"
+#import "NumberView.h"
 
 @implementation ConcreteWidgetView {
     PieLayer* pieLayer;
     BarLayer* barLayer;
+    NumberView* numView;
 }
 
 - (id) initWithCoder:(NSCoder *)aDecoder
@@ -28,6 +30,11 @@
         barLayer = [[BarLayer layer]customInit];
         barLayer.position = CGPointMake(900, 700);
         [self.layer addSublayer:barLayer];
+        
+        numView = [[NumberView alloc]init];
+        [numView sizeToFit];
+        numView.center = CGPointMake(500, 500);
+        [self addSubview:numView];
     }
     
     return self;
@@ -43,5 +50,9 @@
     [pieLayer updateValueTo:pieNum];
 }
 
+- (void)updateNumTo: (float) num
+{
+    [numView updateValueTo:num];
+}
 
 @end

@@ -15,19 +15,6 @@
 
 - (id)customInit
 {
-    // draw bar
-    bar = [CAShapeLayer layer];
-    bar.strokeColor = [UIColor greenColor].CGColor;
-    bar.fillColor = [UIColor clearColor].CGColor;
-    bar.lineWidth = 20;
-    UIBezierPath* barPath = [UIBezierPath bezierPath];
-    [barPath moveToPoint:CGPointMake(0, 0)];
-    [barPath addLineToPoint:CGPointMake(0, -350)];
-    [barPath closePath];
-    bar.path = barPath.CGPath;
-    bar.anchorPoint = CGPointMake(0.5, 1);
-    [self addSublayer:bar];
-    
     // draw mask
     maskWithCap = [CAShapeLayer layer];
     UIBezierPath* maskPath = UIBezierPath.bezierPath;
@@ -46,6 +33,20 @@
     maskWithCap.fillColor = [UIColor redColor].CGColor;
     maskWithCap.anchorPoint = CGPointMake(0.5, 0);
     [self addSublayer:maskWithCap];
+    
+    // draw bar
+    bar = [CAShapeLayer layer];
+    bar.strokeColor = [UIColor greenColor].CGColor;
+    bar.fillColor = [UIColor clearColor].CGColor;
+    bar.lineWidth = 20;
+    UIBezierPath* barPath = [UIBezierPath bezierPath];
+    [barPath moveToPoint:CGPointMake(0, 0)];
+    [barPath addLineToPoint:CGPointMake(0, -350)];
+    [barPath closePath];
+    bar.path = barPath.CGPath;
+    bar.anchorPoint = CGPointMake(0.5, 1);
+    bar.mask = maskWithCap;
+    [self addSublayer:bar];
 
     return self;
 }
