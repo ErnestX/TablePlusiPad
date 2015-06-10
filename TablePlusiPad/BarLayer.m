@@ -13,20 +13,21 @@
     CAShapeLayer* maskWithCap;
 }
 
+#define TRIANGLE_HEIGHT 9
+#define BAR_WIDTH 20
+#define BAR_HEIGHT 400
+
 - (id)customInit
 {
     // draw mask
     maskWithCap = [CAShapeLayer layer];
     UIBezierPath* maskPath = UIBezierPath.bezierPath;
     
-    float triangleHeight = 9;
-    float triangleWidth = 20;
-    float barHeight = 300;
-    [maskPath moveToPoint: CGPointMake(-1 * triangleWidth/2, 0)];
-    [maskPath addLineToPoint: CGPointMake(0, -1 * triangleHeight)];
-    [maskPath addLineToPoint: CGPointMake(triangleWidth/2, 0)];
-    [maskPath addLineToPoint: CGPointMake(triangleWidth/2, barHeight)];
-    [maskPath addLineToPoint: CGPointMake(-1 * triangleWidth/2, barHeight)];
+    [maskPath moveToPoint: CGPointMake(-1 * BAR_WIDTH/2, 0)];
+    [maskPath addLineToPoint: CGPointMake(0, -1 * TRIANGLE_HEIGHT)];
+    [maskPath addLineToPoint: CGPointMake(BAR_WIDTH/2, 0)];
+    [maskPath addLineToPoint: CGPointMake(BAR_WIDTH/2, BAR_HEIGHT)];
+    [maskPath addLineToPoint: CGPointMake(-1 * BAR_WIDTH/2, BAR_HEIGHT)];
     [maskPath closePath];
     
     maskWithCap.path = maskPath.CGPath;
@@ -38,10 +39,10 @@
     bar = [CAShapeLayer layer];
     bar.strokeColor = [UIColor greenColor].CGColor;
     bar.fillColor = [UIColor clearColor].CGColor;
-    bar.lineWidth = 20;
+    bar.lineWidth = BAR_WIDTH;
     UIBezierPath* barPath = [UIBezierPath bezierPath];
     [barPath moveToPoint:CGPointMake(0, 0)];
-    [barPath addLineToPoint:CGPointMake(0, -350)];
+    [barPath addLineToPoint:CGPointMake(0, -1 * BAR_HEIGHT - TRIANGLE_HEIGHT)];
     [barPath closePath];
     bar.path = barPath.CGPath;
     bar.anchorPoint = CGPointMake(0.5, 1);
@@ -53,6 +54,12 @@
 
 - (void) updateValueTo: (float)v
 {
+    if (v > BAR_HEIGHT) {
+        v = BAR_HEIGHT;
+    } else if (v < 0) {
+        v = 0;
+    }
+    
     maskWithCap.position = CGPointMake(maskWithCap.position.x, -1 * v);
 }
 

@@ -31,8 +31,7 @@
 
 - (void) updateValueTo: (float) v
 {
-    NSLog(@"update");
-    [label countFrom:label.text.floatValue to:v withDuration:0.2];
+    [label countFrom:label.text.floatValue to:v withDuration:0.25];
 }
 
 @end

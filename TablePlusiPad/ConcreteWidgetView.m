@@ -28,12 +28,12 @@
         [self.layer addSublayer:pieLayer];
         
         barLayer = [[BarLayer layer]customInit];
-        barLayer.position = CGPointMake(900, 700);
+        barLayer.position = CGPointMake(700, 700);
         [self.layer addSublayer:barLayer];
         
         numView = [[NumberView alloc]init];
         [numView sizeToFit];
-        numView.center = CGPointMake(500, 500);
+        numView.center = CGPointMake(320, 540);
         [self addSubview:numView];
     }
     
