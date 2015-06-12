@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		CA38E2AA1B27AE530059C0DE /* NumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA38E2A91B27AE530059C0DE /* NumberView.m */; };
+		CAC57F151B2B491900B1D7AD /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC57F141B2B491900B1D7AD /* ShareViewController.m */; };
+		CAC57F181B2B493000B1D7AD /* ShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC57F171B2B493000B1D7AD /* ShareView.m */; };
+		CAC57F1B1B2B4A1200B1D7AD /* NorthWallView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC57F1A1B2B4A1200B1D7AD /* NorthWallView.m */; };
+		CAC57F1E1B2B4A2100B1D7AD /* SouthWallView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC57F1D1B2B4A2100B1D7AD /* SouthWallView.m */; };
+		CAC57F211B2B4A3200B1D7AD /* WestWallView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC57F201B2B4A3200B1D7AD /* WestWallView.m */; };
+		CAC57F241B2B4A3F00B1D7AD /* EastWallView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC57F231B2B4A3F00B1D7AD /* EastWallView.m */; };
 		CACBBD0E1B25FB5A004A15BF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CACBBD0D1B25FB5A004A15BF /* main.m */; };
 		CACBBD111B25FB5A004A15BF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CACBBD101B25FB5A004A15BF /* AppDelegate.m */; };
 		CACBBD141B25FB5A004A15BF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CACBBD131B25FB5A004A15BF /* ViewController.m */; };
@@ -37,6 +43,18 @@
 		8658723E976F0BCBCAACA385 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA38E2A81B27AE520059C0DE /* NumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberView.h; sourceTree = "<group>"; };
 		CA38E2A91B27AE530059C0DE /* NumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberView.m; sourceTree = "<group>"; };
+		CAC57F131B2B491900B1D7AD /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
+		CAC57F141B2B491900B1D7AD /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
+		CAC57F161B2B493000B1D7AD /* ShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareView.h; sourceTree = "<group>"; };
+		CAC57F171B2B493000B1D7AD /* ShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareView.m; sourceTree = "<group>"; };
+		CAC57F191B2B4A1200B1D7AD /* NorthWallView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NorthWallView.h; sourceTree = "<group>"; };
+		CAC57F1A1B2B4A1200B1D7AD /* NorthWallView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NorthWallView.m; sourceTree = "<group>"; };
+		CAC57F1C1B2B4A2100B1D7AD /* SouthWallView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SouthWallView.h; sourceTree = "<group>"; };
+		CAC57F1D1B2B4A2100B1D7AD /* SouthWallView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SouthWallView.m; sourceTree = "<group>"; };
+		CAC57F1F1B2B4A3200B1D7AD /* WestWallView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WestWallView.h; sourceTree = "<group>"; };
+		CAC57F201B2B4A3200B1D7AD /* WestWallView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WestWallView.m; sourceTree = "<group>"; };
+		CAC57F221B2B4A3F00B1D7AD /* EastWallView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EastWallView.h; sourceTree = "<group>"; };
+		CAC57F231B2B4A3F00B1D7AD /* EastWallView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EastWallView.m; sourceTree = "<group>"; };
 		CACBBD081B25FB5A004A15BF /* TablePlusiPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TablePlusiPad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CACBBD0C1B25FB5A004A15BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CACBBD0D1B25FB5A004A15BF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -86,6 +104,41 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CAC57F111B2B479400B1D7AD /* Widget */ = {
+			isa = PBXGroup;
+			children = (
+				CACBBD341B25FCA0004A15BF /* Widget.h */,
+				CACBBD351B25FFFD004A15BF /* ConcreteWidgetView.h */,
+				CACBBD361B25FFFD004A15BF /* ConcreteWidgetView.m */,
+				CACBBD381B265794004A15BF /* PieLayer.h */,
+				CACBBD391B265794004A15BF /* PieLayer.m */,
+				CACBBD3B1B2766E6004A15BF /* BarLayer.h */,
+				CACBBD3C1B2766E6004A15BF /* BarLayer.m */,
+				CA38E2A81B27AE520059C0DE /* NumberView.h */,
+				CA38E2A91B27AE530059C0DE /* NumberView.m */,
+			);
+			name = Widget;
+			sourceTree = "<group>";
+		};
+		CAC57F121B2B47B100B1D7AD /* ShareMode */ = {
+			isa = PBXGroup;
+			children = (
+				CAC57F131B2B491900B1D7AD /* ShareViewController.h */,
+				CAC57F141B2B491900B1D7AD /* ShareViewController.m */,
+				CAC57F161B2B493000B1D7AD /* ShareView.h */,
+				CAC57F171B2B493000B1D7AD /* ShareView.m */,
+				CAC57F191B2B4A1200B1D7AD /* NorthWallView.h */,
+				CAC57F1A1B2B4A1200B1D7AD /* NorthWallView.m */,
+				CAC57F1C1B2B4A2100B1D7AD /* SouthWallView.h */,
+				CAC57F1D1B2B4A2100B1D7AD /* SouthWallView.m */,
+				CAC57F1F1B2B4A3200B1D7AD /* WestWallView.h */,
+				CAC57F201B2B4A3200B1D7AD /* WestWallView.m */,
+				CAC57F221B2B4A3F00B1D7AD /* EastWallView.h */,
+				CAC57F231B2B4A3F00B1D7AD /* EastWallView.m */,
+			);
+			name = ShareMode;
+			sourceTree = "<group>";
+		};
 		CACBBCFF1B25FB5A004A15BF = {
 			isa = PBXGroup;
 			children = (
@@ -113,15 +166,8 @@
 				CACBBD101B25FB5A004A15BF /* AppDelegate.m */,
 				CACBBD121B25FB5A004A15BF /* ViewController.h */,
 				CACBBD131B25FB5A004A15BF /* ViewController.m */,
-				CACBBD341B25FCA0004A15BF /* Widget.h */,
-				CACBBD351B25FFFD004A15BF /* ConcreteWidgetView.h */,
-				CACBBD361B25FFFD004A15BF /* ConcreteWidgetView.m */,
-				CACBBD381B265794004A15BF /* PieLayer.h */,
-				CACBBD391B265794004A15BF /* PieLayer.m */,
-				CACBBD3B1B2766E6004A15BF /* BarLayer.h */,
-				CACBBD3C1B2766E6004A15BF /* BarLayer.m */,
-				CA38E2A81B27AE520059C0DE /* NumberView.h */,
-				CA38E2A91B27AE530059C0DE /* NumberView.m */,
+				CAC57F121B2B47B100B1D7AD /* ShareMode */,
+				CAC57F111B2B479400B1D7AD /* Widget */,
 				CACBBD151B25FB5A004A15BF /* Main.storyboard */,
 				CACBBD181B25FB5A004A15BF /* Images.xcassets */,
 				CACBBD1A1B25FB5A004A15BF /* LaunchScreen.xib */,
@@ -300,9 +346,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				CACBBD141B25FB5A004A15BF /* ViewController.m in Sources */,
+				CAC57F1E1B2B4A2100B1D7AD /* SouthWallView.m in Sources */,
+				CAC57F181B2B493000B1D7AD /* ShareView.m in Sources */,
+				CAC57F211B2B4A3200B1D7AD /* WestWallView.m in Sources */,
 				CACBBD371B25FFFD004A15BF /* ConcreteWidgetView.m in Sources */,
+				CAC57F151B2B491900B1D7AD /* ShareViewController.m in Sources */,
 				CACBBD3A1B265794004A15BF /* PieLayer.m in Sources */,
 				CACBBD111B25FB5A004A15BF /* AppDelegate.m in Sources */,
+				CAC57F241B2B4A3F00B1D7AD /* EastWallView.m in Sources */,
+				CAC57F1B1B2B4A1200B1D7AD /* NorthWallView.m in Sources */,
 				CACBBD0E1B25FB5A004A15BF /* main.m in Sources */,
 				CA38E2AA1B27AE530059C0DE /* NumberView.m in Sources */,
 				CACBBD3D1B2766E6004A15BF /* BarLayer.m in Sources */,

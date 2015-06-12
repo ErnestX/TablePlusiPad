@@ -71,13 +71,24 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ymd-Tm-ZJf">
+                                        <rect key="frame" x="546" y="562" width="39" height="30"/>
+                                        <state key="normal" title="NEXT">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="fft-hM-0XA" kind="show" id="HCx-lm-0Wq"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="PJd-Bh-BpS" firstAttribute="leading" secondItem="m8q-5k-uVg" secondAttribute="trailing" constant="6" id="13U-vL-5A5"/>
                                     <constraint firstItem="ann-5t-Wkb" firstAttribute="top" secondItem="uKx-pQ-uI5" secondAttribute="bottom" constant="16" id="25z-6n-SAy"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ymd-Tm-ZJf" secondAttribute="trailing" constant="15" id="2eq-CX-I6Q"/>
                                     <constraint firstItem="Oe6-7S-YUF" firstAttribute="leading" secondItem="I0A-ml-GCY" secondAttribute="leading" constant="81" id="A2u-wC-yQW"/>
                                     <constraint firstItem="8tf-lo-rnm" firstAttribute="leading" secondItem="ann-5t-Wkb" secondAttribute="trailing" constant="6" id="B1x-JN-phC"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ymd-Tm-ZJf" secondAttribute="bottom" constant="8" id="CsU-lm-UO0"/>
                                     <constraint firstItem="5mo-f7-1LQ" firstAttribute="leading" secondItem="uKx-pQ-uI5" secondAttribute="trailing" constant="6" id="DSb-5e-yd2"/>
                                     <constraint firstItem="Oe6-7S-YUF" firstAttribute="top" secondItem="8tf-lo-rnm" secondAttribute="bottom" constant="8" id="JhR-AI-Ekl"/>
                                     <constraint firstItem="ann-5t-Wkb" firstAttribute="leading" secondItem="I0A-ml-GCY" secondAttribute="leading" constant="18" id="OuD-8g-ejK"/>
@@ -107,6 +118,39 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--Share View Controller-->
+        <scene sceneID="DU5-YN-6XQ">
+            <objects>
+                <viewController id="fft-hM-0XA" customClass="ShareViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jb2-aj-02Y"/>
+                        <viewControllerLayoutGuide type="bottom" id="IT0-xz-PMK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6uo-6J-v9x" customClass="ShareView">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Quo-er-YkI">
+                                <rect key="frame" x="16" y="562" width="39" height="30"/>
+                                <state key="normal" title="PREV">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="dOl-tB-fnl"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="IT0-xz-PMK" firstAttribute="top" secondItem="Quo-er-YkI" secondAttribute="bottom" constant="8" id="Dfn-x9-wLw"/>
+                            <constraint firstItem="Quo-er-YkI" firstAttribute="leading" secondItem="6uo-6J-v9x" secondAttribute="leadingMargin" id="aqh-TY-ksn"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eyE-QK-U2P" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1305" y="519"/>
         </scene>
     </scenes>
 </document>
