@@ -1,13 +1,13 @@
 //
-//  WestWallView.m
+//  TableView.h
 //  TablePlusiPad
 //
 //  Created by Jialiang Xiang on 2015-06-12.
 //
 //
 
-#import "WestWallView.h"
+#import <UIKit/UIKit.h>
 
-@implementation WestWallView
+@interface TableView : UIView
 
 @end

@@ -33,7 +33,19 @@
     [locationManager startUpdatingHeading];
     
     shareView = (ShareView*)self.view;
-    [shareView customInit];
+    
+    TableView* tv = [[TableView alloc]init];
+    tv.backgroundColor = [UIColor lightGrayColor];
+    WallView* nwv = [[WallView alloc]init];
+    WallView* swv = [[WallView alloc]init];
+    WallView* wwv = [[WallView alloc]init];
+    WallView* ewv = [[WallView alloc]init];
+    nwv.backgroundColor = [UIColor redColor];
+    swv.backgroundColor = [UIColor blueColor];
+    wwv.backgroundColor = [UIColor greenColor];
+    ewv.backgroundColor = [UIColor yellowColor];
+    
+    [shareView customInitWithTableView:tv northWallView:nwv southWallView:swv westWallView:wwv eastWallView:ewv];
 }
 
 - (void) handleTilt:(NSTimer*) timer

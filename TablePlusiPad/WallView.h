@@ -1,13 +1,13 @@
 //
-//  EastWallView.m
+//  NorthWallView.h
 //  TablePlusiPad
 //
 //  Created by Jialiang Xiang on 2015-06-12.
 //
 //
 
-#import "EastWallView.h"
+#import <UIKit/UIKit.h>
 
-@implementation EastWallView
+@interface WallView : UIView
 
 @end

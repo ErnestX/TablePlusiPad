@@ -10,11 +10,18 @@
 
 @implementation ShareView {
     CALayer* gyroTestLayer;
+    
+    TableView* tableView;
+    WallView* northWallView;
+    WallView* southWallView;
+    WallView* westWallView;
+    WallView* eastWallView;
+    
     CATransform3D rotation;
     CATransform3D tilt;
 }
 
-- (id)customInit
+- (id)customInitWithTableView:(TableView*)tv northWallView:(WallView*)nwv southWallView:(WallView*)swv westWallView:(WallView*)wwv eastWallView:(WallView*)ewv
 {
     rotation = CATransform3DIdentity;
     tilt = CATransform3DIdentity;
@@ -36,7 +43,7 @@
     
     CATransform3D t = CATransform3DConcat(rotation, tilt);
     
-    gyroTestLayer.transform = CATransform3DConcat(t, perspectiveT); // first perspective then tilt
+    gyroTestLayer.transform = CATransform3DConcat(t, perspectiveT); 
 }
 
 - (void)rotateTo: (float) heading

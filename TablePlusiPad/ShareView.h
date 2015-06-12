@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TableView.h"
+#import "WallView.h"
 
 @interface ShareView : UIView
 
-- (id)customInit;
+- (id)customInitWithTableView:(TableView*)tv northWallView:(WallView*)nwv southWallView:(WallView*)swv westWallView:(WallView*)wwv eastWallView:(WallView*)ewv;
 - (void)rotateTo: (float) heading;
 - (void)tiltTo: (float) angleX :(float)angleY;
 
