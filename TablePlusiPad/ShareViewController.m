@@ -38,8 +38,7 @@
 
 - (void) handleTilt:(NSTimer*) timer
 {
-    NSLog(@"x %f y %f", motionManager.accelerometerData.acceleration.x, motionManager.accelerometerData.acceleration.y);
-    [shareView tiltTo:motionManager.accelerometerData.acceleration.x :motionManager.accelerometerData.acceleration.y];
+    [shareView tiltTo:motionManager.accelerometerData.acceleration.x * 1.5 : motionManager.accelerometerData.acceleration.y * 1.5];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading

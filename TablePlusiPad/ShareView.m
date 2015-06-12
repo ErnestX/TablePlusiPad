@@ -21,7 +21,7 @@
     
     gyroTestLayer = [CALayer layer];
     gyroTestLayer.backgroundColor = [UIColor redColor].CGColor;
-    gyroTestLayer.frame = CGRectMake(0, 0, 200, 10);
+    gyroTestLayer.frame = CGRectMake(0, 0, 200, 400);
     // since it's iPad starting in landscape, have to do this initialization after the view having been loaded
     gyroTestLayer.position = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
     [self.layer addSublayer:gyroTestLayer];
@@ -31,7 +31,12 @@
 
 - (void)updateView
 {
-    gyroTestLayer.transform = CATransform3DConcat(rotation, tilt);
+    CATransform3D perspectiveT = CATransform3DIdentity;
+    perspectiveT.m34 = -1.0/500.0;
+    
+    CATransform3D t = CATransform3DConcat(rotation, tilt);
+    
+    gyroTestLayer.transform = CATransform3DConcat(t, perspectiveT); // first perspective then tilt
 }
 
 - (void)rotateTo: (float) heading
