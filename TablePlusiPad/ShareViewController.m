@@ -75,12 +75,12 @@
 
 - (void) handleTilt:(NSTimer*) timer
 {
-    [shareView tiltTo: -1 * [tiltFilter filterData:motionManager.accelerometerData.acceleration.x] * 1.5 :0.0];
+    [shareView setTiltTo: -1 * [tiltFilter filterData:motionManager.accelerometerData.acceleration.x] * 1.5 :0.0];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
 {
-    [shareView rotateTo:-1 * [rotateFilter filterData: newHeading.trueHeading]/360*2*M_PI]; // negate to turn to the opposite direction the iPad is turning
+    [shareView setRotateTo:-1 * [rotateFilter filterData: newHeading.trueHeading]/360*2*M_PI]; // negate to turn to the opposite direction the iPad is turning
 }
 
 @end

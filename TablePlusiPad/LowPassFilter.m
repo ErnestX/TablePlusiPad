@@ -11,36 +11,36 @@
 @implementation LowPassFilter {
     NSInteger BUFFER_SIZE;
     float* buffer;  // a circular array
-    NSInteger currentBufferSlot;
+    NSInteger currentBufferIndex;
 }
 
 -  (id)initBufferWithArray:(float*)array ofSize:(NSInteger)size withData:(float)d
 {
     BUFFER_SIZE = size;
-    buffer = array;
     
+    buffer = array;
     for (NSInteger i = 0; i < BUFFER_SIZE; i++){
         buffer[i] = d;
     }
     
-    currentBufferSlot = 0;
+    currentBufferIndex = 0;
     
     return self;
 }
 
 - (float)filterData:(float)newData
 {
-    buffer[currentBufferSlot] = newData;
+    buffer[currentBufferIndex] = newData;
     
-    // calc average
+    // calc average of the last BUFFER_SIZE num of data in order to filter out high frequency
     float sum = 0;
     for (NSInteger i = 0; i < BUFFER_SIZE; i++) {
         sum += buffer[i];
     }
     float filteredData = sum / BUFFER_SIZE;
 
-    currentBufferSlot = (currentBufferSlot + 1) % BUFFER_SIZE;
-//    NSLog(@"current slot %d", currentBufferSlot);
+    currentBufferIndex = (currentBufferIndex + 1) % BUFFER_SIZE;
+    
     return filteredData;
 }
 
