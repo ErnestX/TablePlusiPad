@@ -7,7 +7,8 @@
 //
 
 #import "ShareView.h"
-#define DISTANCE_FROM_CAMERA 600.0
+#define DISTANCE_FROM_CAMERA 1000.0
+#define DISTANCE_FROM_TABLE_TO_SCREEN 400.0
 
 @implementation ShareView {
     TableView* tableView;
@@ -19,7 +20,7 @@
     CATransform3D rotation;
     CATransform3D tilt;
     
-    CADisplayLink* displayerLink;
+    CADisplayLink* displayLink;
 }
 
 - (id)customInitWithTableView:(TableView*)tv northWallView:(WallView*)nwv southWallView:(WallView*)swv westWallView:(WallView*)wwv eastWallView:(WallView*)ewv
@@ -28,8 +29,8 @@
     rotation = CATransform3DIdentity;
     tilt = CATransform3DIdentity;
     
-    displayerLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateView:)];
-    [displayerLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
+    displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateView:)];
+    [displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
     
     tableView = tv;
     northWallView = nwv;
@@ -38,23 +39,19 @@
     eastWallView = ewv;
     
     // set up subviews
-    CATransform3D perspectiveT = CATransform3DIdentity;
-    perspectiveT.m34 = -1.0/DISTANCE_FROM_CAMERA;
+//    CATransform3D perspectiveT = CATransform3DIdentity;
+//    perspectiveT.m34 = -1.0/DISTANCE_FROM_CAMERA;
     
-    [tableView initDefaultTransform:perspectiveT];
+    [tableView initDefaultTransform:CATransform3DMakeTranslation(0, 0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN)];
     
-    [northWallView initDefaultTransform:CATransform3DConcat(CATransform3DConcat(CATransform3DMakeRotation(-1 * M_PI/2, 1, 0, 0),
-                                                                                CATransform3DMakeTranslation(0, -1 * CGRectGetHeight(tableView.frame)/2.0, 0)),
-                                                            perspectiveT)];
-    [southWallView initDefaultTransform:CATransform3DConcat(CATransform3DConcat(CATransform3DMakeRotation(M_PI/2, 1, 0, 0),
-                                                                                CATransform3DMakeTranslation(0, CGRectGetHeight(tableView.frame)/2.0, 0)),
-                                                            perspectiveT)];
-    [westWallView initDefaultTransform:CATransform3DConcat(CATransform3DConcat(CATransform3DMakeRotation(M_PI/2, 0, 1, 0),
-                                                                               CATransform3DMakeTranslation(-1 * CGRectGetWidth(tableView.frame)/2.0, 0, 0)),
-                                                           perspectiveT)];
-    [eastWallView initDefaultTransform:CATransform3DConcat(CATransform3DConcat(CATransform3DMakeRotation(-1 * M_PI/2, 0, 1, 0),
-                                                                               CATransform3DMakeTranslation(CGRectGetWidth(tableView.frame)/2.0, 0, 0)),
-                                                           perspectiveT)];
+    [northWallView initDefaultTransform:CATransform3DConcat(CATransform3DMakeRotation(-1 * M_PI/2, 1, 0, 0),
+                                                                                CATransform3DMakeTranslation(0, -1 * CGRectGetHeight(tableView.frame)/2.0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN))];
+    [southWallView initDefaultTransform:CATransform3DConcat(CATransform3DMakeRotation(M_PI/2, 1, 0, 0),
+                                                                                CATransform3DMakeTranslation(0, CGRectGetHeight(tableView.frame)/2.0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN))];
+    [westWallView initDefaultTransform:CATransform3DConcat(CATransform3DMakeRotation(M_PI/2, 0, 1, 0),
+                                                                               CATransform3DMakeTranslation(-1 * CGRectGetWidth(tableView.frame)/2.0, 0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN))];
+    [eastWallView initDefaultTransform:CATransform3DConcat(CATransform3DMakeRotation(-1 * M_PI/2, 0, 1, 0),
+                                                                               CATransform3DMakeTranslation(CGRectGetWidth(tableView.frame)/2.0, 0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN))];
     
     [self addSubview:tableView];
     [self addSubview:northWallView];
@@ -67,7 +64,10 @@
 
 - (void)updateView:(CADisplayLink*)dl
 {
-   self.layer.sublayerTransform = CATransform3DConcat(rotation, tilt);
+   CATransform3D perspectiveT = CATransform3DIdentity;
+   perspectiveT.m34 = -1.0/DISTANCE_FROM_CAMERA;
+    
+   self.layer.sublayerTransform = CATransform3DConcat(perspectiveT, CATransform3DConcat(rotation, tilt));
 }
 
 - (void)setRotateTo: (float) heading

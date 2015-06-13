@@ -16,6 +16,8 @@
 {
     defaultTransform = t;
     self.layer.transform = t;
+    
+    self.layer.doubleSided = NO;
 }
 
 @end
