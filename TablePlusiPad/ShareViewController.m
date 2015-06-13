@@ -22,16 +22,20 @@
 #define TABLE_HEIGHT 300
 
 @implementation ShareViewController {
+    ShareView* shareView;
+    
     CMMotionManager* motionManager;
     CLLocationManager* locationManager;
     NSTimer* motionCheckTimer;
-    ShareView* shareView;
+    
     LowPassFilter* tiltFilter;
     LowPassFilter* rotateFilter;
 }
 
 - (void) viewDidLoad
 {
+    shareView = (ShareView*)self.view;
+    
     motionManager = [[CMMotionManager alloc]init];
     [motionManager startAccelerometerUpdates];
     motionManager.accelerometerUpdateInterval = MOTION_CHECK_INTERVAL;
@@ -47,11 +51,8 @@
     static float array2[ROTATE_BUFFER_SIZE];
     rotateFilter = [[LowPassFilter alloc]initBufferWithArray:array2 ofSize:ROTATE_BUFFER_SIZE withData:locationManager.heading.trueHeading];
     
-    shareView = (ShareView*)self.view;
-    
     TableView* tv = [[TableView alloc]initWithFrame:CGRectMake(0, 0, TABLE_WIDTH, TABLE_HEIGHT)];
     tv.center = self.view.center;
-    
     WallView* nwv = [[WallView alloc]initWithFrame:CGRectMake(0, 0, TABLE_WIDTH, WALL_HEIGHT)];
     nwv.layer.anchorPoint = CGPointMake(0.5, 1);
     nwv.center = self.view.center;

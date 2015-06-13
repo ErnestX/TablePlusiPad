@@ -31,7 +31,6 @@
     perspectiveT.m34 = -1.0/DISTANCE_FROM_CAMERA;
     CATransform3D translationT = CATransform3DMakeTranslation(0, 0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN);
     defaultTransform = CATransform3DConcat(perspectiveT, translationT);
-    
     rotation = CATransform3DIdentity;
     tilt = CATransform3DIdentity;
     
