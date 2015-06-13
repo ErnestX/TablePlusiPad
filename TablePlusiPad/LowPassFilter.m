@@ -7,15 +7,18 @@
 //
 
 #import "LowPassFilter.h"
-#define BUFFER_SIZE 20
 
 @implementation LowPassFilter {
-    float buffer[BUFFER_SIZE];  // a circular array
+    NSInteger BUFFER_SIZE;
+    float* buffer;  // a circular array
     NSInteger currentBufferSlot;
 }
 
--  (id)initBufferwithData:(float)d
+-  (id)initBufferWithArray:(float*)array ofSize:(NSInteger)size withData:(float)d
 {
+    BUFFER_SIZE = size;
+    buffer = array;
+    
     for (NSInteger i = 0; i < BUFFER_SIZE; i++){
         buffer[i] = d;
     }
@@ -37,7 +40,7 @@
     float filteredData = sum / BUFFER_SIZE;
 
     currentBufferSlot = (currentBufferSlot + 1) % BUFFER_SIZE;
-    
+//    NSLog(@"current slot %d", currentBufferSlot);
     return filteredData;
 }
 

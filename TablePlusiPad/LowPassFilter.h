@@ -10,7 +10,7 @@
 
 @interface LowPassFilter : NSObject
 
--  (id)initBufferwithData:(float)d;
+-  (id)initBufferWithArray:(float*)array ofSize:(NSInteger)size withData:(float)d;
 - (float)filterData:(float)newData;
 
 @end

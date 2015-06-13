@@ -13,8 +13,9 @@
 #import "LowPassFilter.h"
 
 #define MOTION_CHECK_INTERVAL 0.01
-#define HEADING_FILTER 0.5
-//#define BUFFER_SIZE 10
+#define HEADING_FILTER 0.1
+#define TILT_BUFFER_SIZE 20
+#define ROTATE_BUFFER_SIZE 5
 
 #define WALL_HEIGHT 400
 #define TABLE_WIDTH 400
@@ -26,6 +27,7 @@
     NSTimer* motionCheckTimer;
     ShareView* shareView;
     LowPassFilter* tiltFilter;
+    LowPassFilter* rotateFilter;
 }
 
 - (void) viewDidLoad
@@ -34,13 +36,16 @@
     [motionManager startAccelerometerUpdates];
     motionManager.accelerometerUpdateInterval = MOTION_CHECK_INTERVAL;
     motionCheckTimer = [NSTimer scheduledTimerWithTimeInterval:MOTION_CHECK_INTERVAL target:self selector:@selector(handleTilt:) userInfo:nil repeats:YES];
-    tiltFilter = [[LowPassFilter alloc]initBufferwithData:motionManager.accelerometerData.acceleration.x];
+    static float array1[TILT_BUFFER_SIZE];
+    tiltFilter = [[LowPassFilter alloc]initBufferWithArray:array1 ofSize:TILT_BUFFER_SIZE withData:motionManager.accelerometerData.acceleration.x];
 
     locationManager = [[CLLocationManager alloc]init];
     locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     locationManager.headingFilter = HEADING_FILTER;
     locationManager.delegate = self;
     [locationManager startUpdatingHeading];
+    static float array2[ROTATE_BUFFER_SIZE];
+    rotateFilter = [[LowPassFilter alloc]initBufferWithArray:array2 ofSize:ROTATE_BUFFER_SIZE withData:locationManager.heading.trueHeading];
     
     shareView = (ShareView*)self.view;
     
@@ -75,8 +80,7 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
 {
-    // TODO: add buffer
-    [shareView rotateTo:-1 * newHeading.trueHeading/360*2*M_PI]; // negate to turn to the opposite direction the iPad is turning
+    [shareView rotateTo:-1 * [rotateFilter filterData: newHeading.trueHeading]/360*2*M_PI]; // negate to turn to the opposite direction the iPad is turning
 }
 
 @end
