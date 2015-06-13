@@ -39,15 +39,20 @@
     
     TableView* tv = [[TableView alloc]initWithFrame:CGRectMake(0, 0, TABLE_WIDTH, TABLE_HEIGHT)];
     tv.center = self.view.center;
-    tv.backgroundColor = [UIColor lightGrayColor];
+    
     WallView* nwv = [[WallView alloc]initWithFrame:CGRectMake(0, 0, TABLE_WIDTH, WALL_HEIGHT)];
+    nwv.layer.anchorPoint = CGPointMake(0.5, 1);
     nwv.center = self.view.center;
     WallView* swv = [[WallView alloc]initWithFrame:CGRectMake(0, 0, TABLE_WIDTH, WALL_HEIGHT)];
+    swv.layer.anchorPoint = CGPointMake(0.5, 0);
     swv.center = self.view.center;
     WallView* wwv = [[WallView alloc]initWithFrame:CGRectMake(0, 0, WALL_HEIGHT, TABLE_HEIGHT)];
+    wwv.layer.anchorPoint = CGPointMake(1, 0.5);
     wwv.center = self.view.center;
     WallView* ewv = [[WallView alloc]initWithFrame:CGRectMake(0, 0, WALL_HEIGHT, TABLE_HEIGHT)];
+    ewv.layer.anchorPoint = CGPointMake(0, 0.5);
     ewv.center = self.view.center;
+    tv.backgroundColor = [UIColor lightGrayColor];
     nwv.backgroundColor = [UIColor redColor];
     swv.backgroundColor = [UIColor blueColor];
     wwv.backgroundColor = [UIColor greenColor];

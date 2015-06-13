@@ -33,12 +33,12 @@
     
     // set up subviews
     CATransform3D perspectiveT = CATransform3DIdentity;
-    perspectiveT.m34 = -1.0/400.0;
+    perspectiveT.m34 = -1.0/600.0;
     
     [tableView initDefaultTransform:perspectiveT];
     
-    [northWallView initDefaultTransform:CATransform3DConcat(CATransform3DConcat(CATransform3DMakeRotation(M_PI/2, 1, 0, 0), CATransform3DMakeTranslation(0, -1 * CGRectGetHeight(tableView.frame)/2.0, 0)), perspectiveT)];
-    [southWallView initDefaultTransform:CATransform3DConcat(CATransform3DConcat(CATransform3DMakeRotation(-1 * M_PI/2, 1, 0, 0), CATransform3DMakeTranslation(0, CGRectGetHeight(tableView.frame)/2.0, 0)), perspectiveT)];
+    [northWallView initDefaultTransform:CATransform3DConcat(CATransform3DConcat(CATransform3DMakeRotation(-1 * M_PI/2, 1, 0, 0), CATransform3DMakeTranslation(0, -1 * CGRectGetHeight(tableView.frame)/2.0, 0)), perspectiveT)];
+    [southWallView initDefaultTransform:CATransform3DConcat(CATransform3DConcat(CATransform3DMakeRotation(M_PI/2, 1, 0, 0), CATransform3DMakeTranslation(0, CGRectGetHeight(tableView.frame)/2.0, 0)), perspectiveT)];
     [westWallView initDefaultTransform:CATransform3DConcat(CATransform3DConcat(CATransform3DMakeRotation(M_PI/2, 0, 1, 0), CATransform3DMakeTranslation(-1 * CGRectGetWidth(tableView.frame)/2.0, 0, 0)), perspectiveT)];
     [eastWallView initDefaultTransform:CATransform3DConcat(CATransform3DConcat(CATransform3DMakeRotation(-1 * M_PI/2, 0, 1, 0), CATransform3DMakeTranslation(CGRectGetWidth(tableView.frame)/2.0, 0, 0)), perspectiveT)];
     
