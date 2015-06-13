@@ -30,10 +30,11 @@
     // set up subviews
     CATransform3D perspectiveT = CATransform3DIdentity;
     perspectiveT.m34 = -1.0/500.0;
-    [nwv initDefaultTransform:CATransform3DConcat(CATransform3DConcat(CATransform3DMakeRotation(M_PI/2, 1, 0, 0), CATransform3DMakeTranslation(0, -1 * CGRectGetHeight(tv.frame), 0)), perspectiveT)];
-    [swv initDefaultTransform:CATransform3DConcat(CATransform3DConcat(CATransform3DMakeRotation(-1 * M_PI/2, 1, 0, 0), CATransform3DMakeTranslation(0, CGRectGetHeight(tv.frame), 0)), perspectiveT)];
-    [wwv initDefaultTransform:CATransform3DConcat(CATransform3DConcat(CATransform3DMakeRotation(M_PI/2, 0, 1, 0), CATransform3DMakeTranslation(-1 * CGRectGetWidth(tv.frame), 0, 0)), perspectiveT)];
-    [ewv initDefaultTransform:CATransform3DConcat(CATransform3DConcat(CATransform3DMakeRotation(-1 * M_PI/2, 0, 1, 0), CATransform3DMakeTranslation(CGRectGetWidth(tv.frame), 0, 0)), perspectiveT)];
+    
+    [nwv initDefaultTransform:CATransform3DConcat(CATransform3DConcat(CATransform3DMakeRotation(M_PI/2, 1, 0, 0), CATransform3DMakeTranslation(0, -1 * CGRectGetHeight(tv.frame)/2.0, 0)), perspectiveT)];
+    [swv initDefaultTransform:CATransform3DConcat(CATransform3DConcat(CATransform3DMakeRotation(-1 * M_PI/2, 1, 0, 0), CATransform3DMakeTranslation(0, CGRectGetHeight(tv.frame)/2.0, 0)), perspectiveT)];
+    [wwv initDefaultTransform:CATransform3DConcat(CATransform3DConcat(CATransform3DMakeRotation(M_PI/2, 0, 1, 0), CATransform3DMakeTranslation(-1 * CGRectGetWidth(tv.frame)/2.0, 0, 0)), perspectiveT)];
+    [ewv initDefaultTransform:CATransform3DConcat(CATransform3DConcat(CATransform3DMakeRotation(-1 * M_PI/2, 0, 1, 0), CATransform3DMakeTranslation(CGRectGetWidth(tv.frame)/2.0, 0, 0)), perspectiveT)];
     
     [self addSubview:tv];
     [self addSubview:nwv];

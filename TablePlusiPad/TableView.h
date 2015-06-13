@@ -10,4 +10,8 @@
 
 @interface TableView : UIView
 
+@property (readonly) CATransform3D defaultTransform;
+
+- (void)initDefaultTransform: (CATransform3D)t;
+
 @end

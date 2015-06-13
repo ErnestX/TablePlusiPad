@@ -12,6 +12,9 @@
 #import "ShareView.h"
 
 #define MOTION_CHECK_INTERVAL 0.1
+#define WALL_HEIGHT 400
+#define TABLE_WIDTH 400
+#define TABLE_HEIGHT 300
 
 @implementation ShareViewController {
     CMMotionManager* motionManager;
@@ -34,16 +37,16 @@
     
     shareView = (ShareView*)self.view;
     
-    TableView* tv = [[TableView alloc]initWithFrame:CGRectMake(0, 0, 400, 300)];
+    TableView* tv = [[TableView alloc]initWithFrame:CGRectMake(0, 0, TABLE_WIDTH, TABLE_HEIGHT)];
     tv.center = self.view.center;
     tv.backgroundColor = [UIColor lightGrayColor];
-    WallView* nwv = [[WallView alloc]initWithFrame:CGRectMake(0, 0, 400, 300)];
+    WallView* nwv = [[WallView alloc]initWithFrame:CGRectMake(0, 0, TABLE_WIDTH, WALL_HEIGHT)];
     nwv.center = self.view.center;
-    WallView* swv = [[WallView alloc]initWithFrame:CGRectMake(0, 0, 400, 300)];
+    WallView* swv = [[WallView alloc]initWithFrame:CGRectMake(0, 0, TABLE_WIDTH, WALL_HEIGHT)];
     swv.center = self.view.center;
-    WallView* wwv = [[WallView alloc]initWithFrame:CGRectMake(0, 0, 400, 300)];
+    WallView* wwv = [[WallView alloc]initWithFrame:CGRectMake(0, 0, WALL_HEIGHT, TABLE_HEIGHT)];
     wwv.center = self.view.center;
-    WallView* ewv = [[WallView alloc]initWithFrame:CGRectMake(0, 0, 400, 300)];
+    WallView* ewv = [[WallView alloc]initWithFrame:CGRectMake(0, 0, WALL_HEIGHT, TABLE_HEIGHT)];
     ewv.center = self.view.center;
     nwv.backgroundColor = [UIColor redColor];
     swv.backgroundColor = [UIColor blueColor];

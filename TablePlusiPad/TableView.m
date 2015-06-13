@@ -10,4 +10,12 @@
 
 @implementation TableView
 
+@synthesize defaultTransform;
+
+- (void)initDefaultTransform: (CATransform3D)t
+{
+    defaultTransform = t;
+    self.layer.transform = t;
+}
+
 @end

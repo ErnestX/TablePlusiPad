@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TablePlusiPad/ShareViewController.m"
-            timestampString = "455845233.896462"
+            timestampString = "455849160.421012"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
