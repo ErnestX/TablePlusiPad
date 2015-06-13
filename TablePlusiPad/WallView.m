@@ -10,11 +10,12 @@
 
 @implementation WallView
 
-- (id)init
+@synthesize defaultTransform;
+
+- (void)initDefaultTransform: (CATransform3D)t
 {
-    self.frame = CGRectMake(0, 0, 200, 150);
-    self.center = CGPointMake([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
-    return self;
+    defaultTransform = t;
+    self.layer.transform = t;
 }
 
 @end

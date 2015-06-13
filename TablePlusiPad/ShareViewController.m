@@ -34,12 +34,17 @@
     
     shareView = (ShareView*)self.view;
     
-    TableView* tv = [[TableView alloc]init];
+    TableView* tv = [[TableView alloc]initWithFrame:CGRectMake(0, 0, 400, 300)];
+    tv.center = self.view.center;
     tv.backgroundColor = [UIColor lightGrayColor];
-    WallView* nwv = [[WallView alloc]init];
-    WallView* swv = [[WallView alloc]init];
-    WallView* wwv = [[WallView alloc]init];
-    WallView* ewv = [[WallView alloc]init];
+    WallView* nwv = [[WallView alloc]initWithFrame:CGRectMake(0, 0, 400, 300)];
+    nwv.center = self.view.center;
+    WallView* swv = [[WallView alloc]initWithFrame:CGRectMake(0, 0, 400, 300)];
+    swv.center = self.view.center;
+    WallView* wwv = [[WallView alloc]initWithFrame:CGRectMake(0, 0, 400, 300)];
+    wwv.center = self.view.center;
+    WallView* ewv = [[WallView alloc]initWithFrame:CGRectMake(0, 0, 400, 300)];
+    ewv.center = self.view.center;
     nwv.backgroundColor = [UIColor redColor];
     swv.backgroundColor = [UIColor blueColor];
     wwv.backgroundColor = [UIColor greenColor];
