@@ -7,6 +7,7 @@
 //
 
 #import "ShareView.h"
+#import <pop/POP.h>
 
 @implementation ShareView {
     TableView* tableView;
@@ -53,13 +54,7 @@
 
 - (void)updateView
 {
-    CATransform3D t = CATransform3DConcat(rotation, tilt);
-    
-    tableView.layer.transform = CATransform3DConcat(tableView.defaultTransform, t);
-    northWallView.layer.transform = CATransform3DConcat(northWallView.defaultTransform, t);
-    southWallView.layer.transform = CATransform3DConcat(southWallView.defaultTransform, t);
-    westWallView.layer.transform = CATransform3DConcat(westWallView.defaultTransform, t);
-    eastWallView.layer.transform = CATransform3DConcat(eastWallView.defaultTransform, t);
+   self.layer.sublayerTransform = CATransform3DConcat(rotation, tilt);
 }
 
 - (void)rotateTo: (float) heading

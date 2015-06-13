@@ -11,10 +11,12 @@
 #import "ShareViewController.h"
 #import "ShareView.h"
 
-#define MOTION_CHECK_INTERVAL 0.1
+#define MOTION_CHECK_INTERVAL 0.01
 #define WALL_HEIGHT 400
 #define TABLE_WIDTH 400
 #define TABLE_HEIGHT 300
+
+#define BUFFER_SIZE 20
 
 @implementation ShareViewController {
     CMMotionManager* motionManager;
@@ -63,7 +65,31 @@
 
 - (void) handleTilt:(NSTimer*) timer
 {
-    [shareView tiltTo: -1 * motionManager.accelerometerData.acceleration.x * 1.5 : -1 * motionManager.accelerometerData.acceleration.y * 1.5];
+    // apply low-pass noise filter
+    static float buffer[BUFFER_SIZE];  // a circular array
+    static BOOL bufferInited = NO;
+    static NSInteger currentBufferSlot = 0;
+    
+    // init buffer
+    if (!bufferInited) {
+        for (NSInteger i = 0; i < BUFFER_SIZE; i++){
+            buffer[i] = motionManager.accelerometerData.acceleration.x;
+        }
+        bufferInited = YES;
+    }
+    
+    float newAccel = motionManager.accelerometerData.acceleration.x;
+    buffer[currentBufferSlot] = newAccel;
+    float sum = 0;
+    for (NSInteger i = 0; i < BUFFER_SIZE; i++) {
+        sum += buffer[i];
+    }
+    float filteredNewAccel = sum / BUFFER_SIZE;
+    
+    [shareView tiltTo: -1 * filteredNewAccel * 1.5 :0.0];
+    
+    currentBufferSlot = (currentBufferSlot + 1) % BUFFER_SIZE;
+//    NSLog(@"current buffer slot %d", currentBufferSlot);
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
