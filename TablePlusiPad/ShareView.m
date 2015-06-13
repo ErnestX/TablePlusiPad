@@ -19,7 +19,7 @@
     CATransform3D rotation;
     CATransform3D tilt;
     
-    NSTimer* displayerLink; //TODO: get a real display link
+    CADisplayLink* displayerLink;
 }
 
 - (id)customInitWithTableView:(TableView*)tv northWallView:(WallView*)nwv southWallView:(WallView*)swv westWallView:(WallView*)wwv eastWallView:(WallView*)ewv
@@ -27,7 +27,9 @@
     // init iVars
     rotation = CATransform3DIdentity;
     tilt = CATransform3DIdentity;
-    displayerLink = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(updateView) userInfo:nil repeats:YES];
+    
+    displayerLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateView:)];
+    [displayerLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
     
     tableView = tv;
     northWallView = nwv;
@@ -63,7 +65,7 @@
     return self;
 }
 
-- (void)updateView
+- (void)updateView:(CADisplayLink*)dl
 {
    self.layer.sublayerTransform = CATransform3DConcat(rotation, tilt);
 }
