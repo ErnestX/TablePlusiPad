@@ -7,7 +7,6 @@
 //
 
 #import "ShareView.h"
-#import <pop/POP.h>
 
 @implementation ShareView {
     TableView* tableView;

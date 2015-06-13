@@ -12,6 +12,7 @@
 		CAC57F181B2B493000B1D7AD /* ShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC57F171B2B493000B1D7AD /* ShareView.m */; };
 		CAC57F1B1B2B4A1200B1D7AD /* WallView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC57F1A1B2B4A1200B1D7AD /* WallView.m */; };
 		CAC57F271B2B98D100B1D7AD /* TableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC57F261B2B98D100B1D7AD /* TableView.m */; };
+		CAC57F2A1B2CA54500B1D7AD /* LowPassFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC57F291B2CA54500B1D7AD /* LowPassFilter.m */; };
 		CACBBD0E1B25FB5A004A15BF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CACBBD0D1B25FB5A004A15BF /* main.m */; };
 		CACBBD111B25FB5A004A15BF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CACBBD101B25FB5A004A15BF /* AppDelegate.m */; };
 		CACBBD141B25FB5A004A15BF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CACBBD131B25FB5A004A15BF /* ViewController.m */; };
@@ -49,6 +50,8 @@
 		CAC57F1A1B2B4A1200B1D7AD /* WallView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WallView.m; sourceTree = "<group>"; };
 		CAC57F251B2B98D100B1D7AD /* TableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableView.h; sourceTree = "<group>"; };
 		CAC57F261B2B98D100B1D7AD /* TableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableView.m; sourceTree = "<group>"; };
+		CAC57F281B2CA54500B1D7AD /* LowPassFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LowPassFilter.h; sourceTree = "<group>"; };
+		CAC57F291B2CA54500B1D7AD /* LowPassFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LowPassFilter.m; sourceTree = "<group>"; };
 		CACBBD081B25FB5A004A15BF /* TablePlusiPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TablePlusiPad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CACBBD0C1B25FB5A004A15BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CACBBD0D1B25FB5A004A15BF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -125,6 +128,8 @@
 				CAC57F261B2B98D100B1D7AD /* TableView.m */,
 				CAC57F191B2B4A1200B1D7AD /* WallView.h */,
 				CAC57F1A1B2B4A1200B1D7AD /* WallView.m */,
+				CAC57F281B2CA54500B1D7AD /* LowPassFilter.h */,
+				CAC57F291B2CA54500B1D7AD /* LowPassFilter.m */,
 			);
 			name = ShareMode;
 			sourceTree = "<group>";
@@ -344,6 +349,7 @@
 				CACBBD111B25FB5A004A15BF /* AppDelegate.m in Sources */,
 				CAC57F1B1B2B4A1200B1D7AD /* WallView.m in Sources */,
 				CACBBD0E1B25FB5A004A15BF /* main.m in Sources */,
+				CAC57F2A1B2CA54500B1D7AD /* LowPassFilter.m in Sources */,
 				CA38E2AA1B27AE530059C0DE /* NumberView.m in Sources */,
 				CACBBD3D1B2766E6004A15BF /* BarLayer.m in Sources */,
 			);
