@@ -9,8 +9,6 @@
 #import "ShareView.h"
 
 @implementation ShareView {
-    CALayer* gyroTestLayer;
-    
     TableView* tableView;
     WallView* northWallView;
     WallView* southWallView;
@@ -27,41 +25,41 @@
     rotation = CATransform3DIdentity;
     tilt = CATransform3DIdentity;
     
+    tableView = tv;
+    northWallView = nwv;
+    southWallView = swv;
+    westWallView = wwv;
+    eastWallView = ewv;
+    
     // set up subviews
     CATransform3D perspectiveT = CATransform3DIdentity;
-    perspectiveT.m34 = -1.0/500.0;
+    perspectiveT.m34 = -1.0/400.0;
     
-    [nwv initDefaultTransform:CATransform3DConcat(CATransform3DConcat(CATransform3DMakeRotation(M_PI/2, 1, 0, 0), CATransform3DMakeTranslation(0, -1 * CGRectGetHeight(tv.frame)/2.0, 0)), perspectiveT)];
-    [swv initDefaultTransform:CATransform3DConcat(CATransform3DConcat(CATransform3DMakeRotation(-1 * M_PI/2, 1, 0, 0), CATransform3DMakeTranslation(0, CGRectGetHeight(tv.frame)/2.0, 0)), perspectiveT)];
-    [wwv initDefaultTransform:CATransform3DConcat(CATransform3DConcat(CATransform3DMakeRotation(M_PI/2, 0, 1, 0), CATransform3DMakeTranslation(-1 * CGRectGetWidth(tv.frame)/2.0, 0, 0)), perspectiveT)];
-    [ewv initDefaultTransform:CATransform3DConcat(CATransform3DConcat(CATransform3DMakeRotation(-1 * M_PI/2, 0, 1, 0), CATransform3DMakeTranslation(CGRectGetWidth(tv.frame)/2.0, 0, 0)), perspectiveT)];
+    [tableView initDefaultTransform:perspectiveT];
     
-    [self addSubview:tv];
-    [self addSubview:nwv];
-    [self addSubview:swv];
-    [self addSubview:wwv];
-    [self addSubview:ewv];
+    [northWallView initDefaultTransform:CATransform3DConcat(CATransform3DConcat(CATransform3DMakeRotation(M_PI/2, 1, 0, 0), CATransform3DMakeTranslation(0, -1 * CGRectGetHeight(tableView.frame)/2.0, 0)), perspectiveT)];
+    [southWallView initDefaultTransform:CATransform3DConcat(CATransform3DConcat(CATransform3DMakeRotation(-1 * M_PI/2, 1, 0, 0), CATransform3DMakeTranslation(0, CGRectGetHeight(tableView.frame)/2.0, 0)), perspectiveT)];
+    [westWallView initDefaultTransform:CATransform3DConcat(CATransform3DConcat(CATransform3DMakeRotation(M_PI/2, 0, 1, 0), CATransform3DMakeTranslation(-1 * CGRectGetWidth(tableView.frame)/2.0, 0, 0)), perspectiveT)];
+    [eastWallView initDefaultTransform:CATransform3DConcat(CATransform3DConcat(CATransform3DMakeRotation(-1 * M_PI/2, 0, 1, 0), CATransform3DMakeTranslation(CGRectGetWidth(tableView.frame)/2.0, 0, 0)), perspectiveT)];
     
-    // set up test layer
-    gyroTestLayer = [CALayer layer];
-    gyroTestLayer.backgroundColor = [UIColor redColor].CGColor;
-    gyroTestLayer.frame = CGRectMake(0, 0, 200, 400);
-    // since it's iPad starting in landscape, have to do this initialization after the view having been loaded
-    gyroTestLayer.position = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
-    gyroTestLayer.hidden = YES;
-    [self.layer addSublayer:gyroTestLayer];
+    [self addSubview:tableView];
+    [self addSubview:northWallView];
+    [self addSubview:southWallView];
+    [self addSubview:westWallView];
+    [self addSubview:eastWallView];
     
     return self;
 }
 
 - (void)updateView
 {
-    CATransform3D perspectiveT = CATransform3DIdentity;
-    perspectiveT.m34 = -1.0/500.0;
-    
     CATransform3D t = CATransform3DConcat(rotation, tilt);
     
-    gyroTestLayer.transform = CATransform3DConcat(t, perspectiveT); 
+    tableView.layer.transform = CATransform3DConcat(tableView.defaultTransform, t);
+    northWallView.layer.transform = CATransform3DConcat(northWallView.defaultTransform, t);
+    southWallView.layer.transform = CATransform3DConcat(southWallView.defaultTransform, t);
+    westWallView.layer.transform = CATransform3DConcat(westWallView.defaultTransform, t);
+    eastWallView.layer.transform = CATransform3DConcat(eastWallView.defaultTransform, t);
 }
 
 - (void)rotateTo: (float) heading
