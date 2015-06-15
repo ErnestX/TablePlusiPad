@@ -7,8 +7,13 @@
 //
 
 #import "ShareView.h"
+
+#define WALL_HEIGHT 600
+#define TABLE_WIDTH 600
+#define TABLE_HEIGHT 400
+
 #define DISTANCE_FROM_CAMERA 800.0
-#define DISTANCE_FROM_TABLE_TO_SCREEN 200.0
+#define DISTANCE_FROM_TABLE_TO_SCREEN 300.0
 
 @implementation ShareView {
     TableView* tableView;
@@ -44,7 +49,28 @@
     westWallView = wwv;
     eastWallView = ewv;
     
-    // set up subviews
+    tableView.frame = CGRectMake(0, 0, TABLE_WIDTH, TABLE_HEIGHT);
+    tableView.center = self.center;
+    northWallView.frame = CGRectMake(0, 0, TABLE_WIDTH, WALL_HEIGHT);
+    northWallView.layer.anchorPoint = CGPointMake(0.5, 1);
+    northWallView.center = self.center;
+    southWallView.frame = CGRectMake(0, 0, TABLE_WIDTH, WALL_HEIGHT);
+    southWallView.layer.anchorPoint = CGPointMake(0.5, 0);
+    southWallView.center = self.center;
+    westWallView.frame = CGRectMake(0, 0, WALL_HEIGHT, TABLE_HEIGHT);
+    westWallView.layer.anchorPoint = CGPointMake(1, 0.5);
+    westWallView.center = self.center;
+    eastWallView.frame = CGRectMake(0, 0, WALL_HEIGHT, TABLE_HEIGHT);
+    eastWallView.layer.anchorPoint = CGPointMake(0, 0.5);
+    eastWallView.center = self.center;
+    tableView.backgroundColor = [UIColor lightGrayColor];
+    northWallView.backgroundColor = [UIColor redColor];
+    southWallView.backgroundColor = [UIColor blueColor];
+    westWallView.backgroundColor = [UIColor greenColor];
+    eastWallView.backgroundColor = [UIColor yellowColor];
+    
+    
+    // set up default transforms
     [tableView initDefaultTransform:CATransform3DMakeTranslation(0.0, 0.0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN)];
     
     [northWallView initDefaultTransform:CATransform3DConcat(CATransform3DMakeRotation(-1 * M_PI/2, 1, 0, 0),
