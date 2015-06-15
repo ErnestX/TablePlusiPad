@@ -76,7 +76,7 @@
 
 - (void) handleTilt:(NSTimer*) timer
 {
-    [shareView setTiltTo: -1 * [tiltFilter filterData:motionManager.accelerometerData.acceleration.x] * 1.5 :0.0];
+    [shareView setTiltTo: -1 * [tiltFilter filterData:motionManager.accelerometerData.acceleration.x] * 4 :0.0];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading

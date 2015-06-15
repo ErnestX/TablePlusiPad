@@ -7,7 +7,7 @@
 //
 
 #import "ShareView.h"
-#define DISTANCE_FROM_CAMERA 1000.0
+#define DISTANCE_FROM_CAMERA 800.0
 #define DISTANCE_FROM_TABLE_TO_SCREEN 400.0
 
 @implementation ShareView {
@@ -29,8 +29,9 @@
     // init iVars
     CATransform3D perspectiveT = CATransform3DIdentity;
     perspectiveT.m34 = -1.0/DISTANCE_FROM_CAMERA;
-    CATransform3D translationT = CATransform3DMakeTranslation(0, 0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN);
-    defaultTransform = CATransform3DConcat(perspectiveT, translationT);
+    //CATransform3D translationT = CATransform3DMakeTranslation(0, 0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN);
+    defaultTransform = perspectiveT;//CATransform3DConcat(perspectiveT, translationT);
+    self.layer.sublayerTransform = defaultTransform;
     rotation = CATransform3DIdentity;
     tilt = CATransform3DIdentity;
     
@@ -60,13 +61,21 @@
     [self addSubview:southWallView];
     [self addSubview:westWallView];
     [self addSubview:eastWallView];
-    
+        
     return self;
 }
 
 - (void)updateView:(CADisplayLink*)dl
 {
-   self.layer.sublayerTransform = CATransform3DConcat(defaultTransform, CATransform3DConcat(rotation, tilt));
+    // have to change the rotations view by view, or won't have the perspective effect
+    CATransform3D t = CATransform3DConcat(rotation, tilt);
+    
+    tableView.layer.transform = CATransform3DConcat(tableView.defaultTransform, t);
+    northWallView.layer.transform = CATransform3DConcat(northWallView.defaultTransform, t);
+    southWallView.layer.transform = CATransform3DConcat(southWallView.defaultTransform, t);
+    westWallView.layer.transform = CATransform3DConcat(westWallView.defaultTransform, t);
+    eastWallView.layer.transform = CATransform3DConcat(eastWallView.defaultTransform, t);
+   //self.layer.sublayerTransform = CATransform3DConcat(defaultTransform, CATransform3DConcat(rotation, tilt));
 }
 
 - (void)setRotateTo: (float) heading
