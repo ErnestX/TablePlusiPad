@@ -34,9 +34,9 @@
     // init iVars
     CATransform3D perspectiveT = CATransform3DIdentity;
     perspectiveT.m34 = -1.0/DISTANCE_FROM_CAMERA;
-    //CATransform3D translationT = CATransform3DMakeTranslation(0, 0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN);
-    defaultTransform = perspectiveT;//CATransform3DConcat(perspectiveT, translationT);
+    defaultTransform = perspectiveT;
     self.layer.sublayerTransform = defaultTransform;
+    
     rotation = CATransform3DIdentity;
     tilt = CATransform3DIdentity;
     
@@ -68,7 +68,6 @@
     southWallView.backgroundColor = [UIColor blueColor];
     westWallView.backgroundColor = [UIColor greenColor];
     eastWallView.backgroundColor = [UIColor yellowColor];
-    
     
     // set up default transforms
     [tableView initDefaultTransform:CATransform3DMakeTranslation(0.0, 0.0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN)];
