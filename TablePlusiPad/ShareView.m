@@ -105,7 +105,7 @@
 
 - (void)setRotationTo: (float) heading
 {
-    NSLog(@"heading: %f", heading);
+//    NSLog(@"heading: %f", heading);
     rotation = CATransform3DMakeRotation(heading, 0, 0, -1);
 }
 
@@ -113,5 +113,12 @@
 {
     tilt = CATransform3DConcat(CATransform3DMakeRotation(angleX, 1, 0, 0), CATransform3DMakeRotation(angleY, 0, 1, 0));
 }
+
+//- (UIView*)hitTest:(CGPoint)point withEvent:(UIEvent *)event
+//{
+//    
+//    // TODO: OVERWRITE!
+//    return [super hitTest:point withEvent:event];
+//}
 
 @end

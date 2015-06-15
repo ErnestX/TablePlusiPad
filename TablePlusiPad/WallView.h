@@ -11,6 +11,7 @@
 @interface WallView : UIView
 
 @property (readonly) CATransform3D defaultTransform;
+@property (readonly) CGRect rotationCenter;
 
 - (void)initDefaultTransform: (CATransform3D)t;
 

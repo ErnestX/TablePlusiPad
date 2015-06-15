@@ -8,9 +8,29 @@
 
 #import "WallView.h"
 
-@implementation WallView
+@implementation WallView {
+    UIButton* testButton;
+}
 
 @synthesize defaultTransform;
+@synthesize rotationCenter;
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        testButton = [[UIButton alloc]initWithFrame:CGRectZero];
+        [testButton setTitle:@"Test Button" forState:UIControlStateNormal];
+        [testButton sizeToFit];
+        testButton.center = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
+        
+        [testButton addTarget:self action:@selector(testButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [self addSubview:testButton];
+    }
+    
+    return self;
+}
 
 - (void)initDefaultTransform: (CATransform3D)t
 {
@@ -18,6 +38,22 @@
     self.layer.transform = t;
     
     self.layer.doubleSided = NO;
+}
+
+- (void)setFrame:(CGRect)frame
+{
+    [super setFrame:frame];
+    testButton.center = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
+}
+         
+- (void)testButtonPressed:(id)sender
+{
+    NSLog(@"test button pressed");
+}
+
+- (void)initRotationCenter:(CGRect)c
+{
+    
 }
 
 @end
