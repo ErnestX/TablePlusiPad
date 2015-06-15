@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ShareViewController : UIViewController <CLLocationManagerDelegate>
+@interface ShareViewController : UIViewController
 
 @end
