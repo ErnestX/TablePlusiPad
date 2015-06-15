@@ -15,7 +15,7 @@
 #define MOTION_CHECK_INTERVAL 0.01
 #define HEADING_FILTER 0.1
 #define TILT_BUFFER_SIZE 20
-#define ROTATE_BUFFER_SIZE 5
+#define ROTATE_BUFFER_SIZE 10
 
 @implementation ShareViewController {
     ShareView* shareView;
@@ -62,7 +62,19 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
 {
-    [shareView setRotateTo:-1 * [rotateFilter filterData: newHeading.trueHeading]/360.0*2.0*M_PI]; // negate to turn to the opposite direction the iPad is turning
+    static float oldH = 0.0;
+    float newH = newHeading.trueHeading;
+    
+    while ((newH - oldH) > 180.0) {
+        newH -= 360;
+    }
+    while ((newH - oldH) < -180) {
+        newH += 360;
+    }
+    
+    oldH = newH;
+    
+    [shareView setRotationTo:[rotateFilter filterData: newH]/360.0*2.0*M_PI]; // negate to turn to the opposite direction the iPad is turning
 }
 
 @end

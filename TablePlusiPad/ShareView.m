@@ -103,9 +103,10 @@
    //self.layer.sublayerTransform = CATransform3DConcat(defaultTransform, CATransform3DConcat(rotation, tilt));
 }
 
-- (void)setRotateTo: (float) heading
+- (void)setRotationTo: (float) heading
 {
-    rotation = CATransform3DMakeRotation(heading, 0, 0, 1);
+    NSLog(@"heading: %f", heading);
+    rotation = CATransform3DMakeRotation(heading, 0, 0, -1);
 }
 
 - (void)setTiltTo: (float) angleX :(float)angleY 

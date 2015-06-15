@@ -13,7 +13,7 @@
 @interface ShareView : UIView
 
 - (id)customInitWithTableView:(TableView*)tv northWallView:(WallView*)nwv southWallView:(WallView*)swv westWallView:(WallView*)wwv eastWallView:(WallView*)ewv;
-- (void)setRotateTo: (float) heading;
+- (void)setRotationTo: (float) heading;
 - (void)setTiltTo: (float) angleX :(float)angleY;
 
 @end
