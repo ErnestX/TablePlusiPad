@@ -8,7 +8,7 @@
 
 #import "ShareView.h"
 #define DISTANCE_FROM_CAMERA 800.0
-#define DISTANCE_FROM_TABLE_TO_SCREEN 400.0
+#define DISTANCE_FROM_TABLE_TO_SCREEN 200.0
 
 @implementation ShareView {
     TableView* tableView;
@@ -45,29 +45,29 @@
     eastWallView = ewv;
     
     // set up subviews
-    [tableView initDefaultTransform:CATransform3DMakeTranslation(0.0, 0.0, 0.0)];
+    [tableView initDefaultTransform:CATransform3DMakeTranslation(0.0, 0.0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN)];
     
     [northWallView initDefaultTransform:CATransform3DConcat(CATransform3DMakeRotation(-1 * M_PI/2, 1, 0, 0),
-                                                            CATransform3DMakeTranslation(0, -1 * CGRectGetHeight(tableView.frame)/2.0, 0.0))];
+                                                            CATransform3DMakeTranslation(0, -1 * CGRectGetHeight(tableView.frame)/2.0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN))];
     [southWallView initDefaultTransform:CATransform3DConcat(CATransform3DMakeRotation(M_PI/2, 1, 0, 0),
-                                                            CATransform3DMakeTranslation(0, CGRectGetHeight(tableView.frame)/2.0, 0.0))];
+                                                            CATransform3DMakeTranslation(0, CGRectGetHeight(tableView.frame)/2.0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN))];
     [westWallView initDefaultTransform:CATransform3DConcat(CATransform3DMakeRotation(M_PI/2, 0, 1, 0),
-                                                           CATransform3DMakeTranslation(-1 * CGRectGetWidth(tableView.frame)/2.0, 0, 0.0))];
+                                                           CATransform3DMakeTranslation(-1 * CGRectGetWidth(tableView.frame)/2.0, 0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN))];
     [eastWallView initDefaultTransform:CATransform3DConcat(CATransform3DMakeRotation(-1 * M_PI/2, 0, 1, 0),
-                                                           CATransform3DMakeTranslation(CGRectGetWidth(tableView.frame)/2.0, 0, 0.0))];
+                                                           CATransform3DMakeTranslation(CGRectGetWidth(tableView.frame)/2.0, 0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN))];
     
     [self addSubview:tableView];
     [self addSubview:northWallView];
     [self addSubview:southWallView];
     [self addSubview:westWallView];
     [self addSubview:eastWallView];
-        
+    
     return self;
 }
 
 - (void)updateView:(CADisplayLink*)dl
 {
-    // have to change the rotations view by view, or won't have the perspective effect
+    // have to change the rotations view by view, or won't have the perspective effect. sublayerTransform should be used only for persepctive transform
     CATransform3D t = CATransform3DConcat(rotation, tilt);
     
     tableView.layer.transform = CATransform3DConcat(tableView.defaultTransform, t);
