@@ -256,6 +256,7 @@
 				TargetAttributes = {
 					CACBBD071B25FB5A004A15BF = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = 3JN39R4EL8;
 					};
 					CACBBD201B25FB5A004A15BF = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -480,9 +481,12 @@
 			baseConfigurationReference = 5FAD673DAE01A7F966839C4A /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TablePlusiPad/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -491,9 +495,12 @@
 			baseConfigurationReference = 4AE0C93934F0851E0D23763C /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = TablePlusiPad/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

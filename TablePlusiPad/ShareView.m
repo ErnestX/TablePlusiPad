@@ -106,6 +106,9 @@
     [self addSubview:southWallView];
     [self addSubview:westWallView];
     [self addSubview:eastWallView];
+    southWallView.hidden = YES;
+    westWallView.hidden = YES;
+    eastWallView.hidden = YES;
     
     return self;
 }
@@ -114,18 +117,31 @@
 {
     // have to change the rotations view by view, or won't have the perspective effect. sublayerTransform should be used only for persepctive transform
     CATransform3D t = CATransform3DConcat(rotation, tilt);
+    float thetaX = atan2f(t.m32, t.m33);
+    float thetaY = atan2f(-1.0 * t.m31, sqrtf(powf(t.m32, 2.0) + powf(t.m33, 2.0))); // forever = 0.0
+    float thetaZ = atan2f(t.m21, t.m11); // = rotationAngle
+    
+    NSLog(@"thetaX:%f", thetaX);
     
     tableView.layer.transform = CATransform3DConcat(tableView.defaultTransform, t);
     
-    float northZTranslate = sinf(-1.0 * tiltAngle) * (TABLE_HEIGHT/2.0);
-    float northYTranslate = -1 * (TABLE_HEIGHT/2.0 - cosf(-1.0 * tiltAngle) * (TABLE_HEIGHT/2.0)) +
-    (-1 * (TABLE_HEIGHT/2.0 - cosf(rotationAngle) * (TABLE_HEIGHT/2.0)));
-    CATransform3D northT = CATransform3DTranslate(t, 0, northYTranslate, northZTranslate);
+    // rotate
+    float northXTranslate = -1 * sinf(thetaZ) * (TABLE_HEIGHT/2.0);
+    float northZTranslate = 0.0;
+    float northYTranslate = (-1 * (TABLE_HEIGHT/2.0 - cosf(thetaZ) * (TABLE_HEIGHT/2.0)));
+    
+    // tilt
+    northZTranslate += sinf(-1.0 * thetaX) * (TABLE_HEIGHT/2.0); // thetaX b/c north
+    northYTranslate += -1 * (TABLE_HEIGHT/2.0 - cosf(-1.0 * thetaX) * (TABLE_HEIGHT/2.0));
+    
+    CATransform3D northT = CATransform3DTranslate(t, northXTranslate, northYTranslate, northZTranslate);
     northWallView.layer.transform = CATransform3DConcat(northWallView.defaultTransform, northT);
     
+    float southXTranslate = sinf(rotationAngle) * (TABLE_HEIGHT/2.0);
     float southZTranslate = sinf(tiltAngle) * (TABLE_HEIGHT/2.0);
-    float southYTranslate = TABLE_HEIGHT/2.0 - cosf(tiltAngle) * (TABLE_HEIGHT/2.0);
-    CATransform3D southT = CATransform3DTranslate(t, 0, southYTranslate, southZTranslate);
+    float southYTranslate = TABLE_HEIGHT/2.0 - cosf(tiltAngle) * (TABLE_HEIGHT/2.0) +
+    TABLE_HEIGHT/2.0 - cosf(rotationAngle) * (TABLE_HEIGHT/2.0);
+    CATransform3D southT = CATransform3DTranslate(t, southXTranslate, southYTranslate, southZTranslate);
     southWallView.layer.transform = CATransform3DConcat(southWallView.defaultTransform, southT);
     
     westWallView.layer.transform = CATransform3DConcat(westWallView.defaultTransform, t);
@@ -144,7 +160,7 @@
 
 - (void)setTiltTo: (float) angleX :(float)angleY 
 {
-//    NSLog(@"angleX: %f", angleX);
+    NSLog(@"angleX: %f", angleX);
     tilt = CATransform3DConcat(CATransform3DMakeRotation(angleX, 1, 0, 0), CATransform3DMakeRotation(angleY, 0, 1, 0));
     tiltAngle = angleX;
 }
