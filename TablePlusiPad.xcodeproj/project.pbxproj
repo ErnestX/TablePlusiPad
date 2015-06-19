@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CA38E2AA1B27AE530059C0DE /* NumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA38E2A91B27AE530059C0DE /* NumberView.m */; };
+		CA38EB1A1B348F4C001AB23A /* Vector3D.m in Sources */ = {isa = PBXBuildFile; fileRef = CA38EB191B348F4C001AB23A /* Vector3D.m */; };
 		CAC57F151B2B491900B1D7AD /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC57F141B2B491900B1D7AD /* ShareViewController.m */; };
 		CAC57F181B2B493000B1D7AD /* ShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC57F171B2B493000B1D7AD /* ShareView.m */; };
 		CAC57F1B1B2B4A1200B1D7AD /* WallView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC57F1A1B2B4A1200B1D7AD /* WallView.m */; };
@@ -42,6 +43,8 @@
 		8658723E976F0BCBCAACA385 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA38E2A81B27AE520059C0DE /* NumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberView.h; sourceTree = "<group>"; };
 		CA38E2A91B27AE530059C0DE /* NumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberView.m; sourceTree = "<group>"; };
+		CA38EB181B348F4C001AB23A /* Vector3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector3D.h; sourceTree = "<group>"; };
+		CA38EB191B348F4C001AB23A /* Vector3D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vector3D.m; sourceTree = "<group>"; };
 		CAC57F131B2B491900B1D7AD /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
 		CAC57F141B2B491900B1D7AD /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
 		CAC57F161B2B493000B1D7AD /* ShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareView.h; sourceTree = "<group>"; };
@@ -130,6 +133,8 @@
 				CAC57F1A1B2B4A1200B1D7AD /* WallView.m */,
 				CAC57F281B2CA54500B1D7AD /* LowPassFilter.h */,
 				CAC57F291B2CA54500B1D7AD /* LowPassFilter.m */,
+				CA38EB181B348F4C001AB23A /* Vector3D.h */,
+				CA38EB191B348F4C001AB23A /* Vector3D.m */,
 			);
 			name = ShareMode;
 			sourceTree = "<group>";
@@ -347,6 +352,7 @@
 				CACBBD371B25FFFD004A15BF /* ConcreteWidgetView.m in Sources */,
 				CAC57F151B2B491900B1D7AD /* ShareViewController.m in Sources */,
 				CACBBD3A1B265794004A15BF /* PieLayer.m in Sources */,
+				CA38EB1A1B348F4C001AB23A /* Vector3D.m in Sources */,
 				CACBBD111B25FB5A004A15BF /* AppDelegate.m in Sources */,
 				CAC57F1B1B2B4A1200B1D7AD /* WallView.m in Sources */,
 				CACBBD0E1B25FB5A004A15BF /* main.m in Sources */,
