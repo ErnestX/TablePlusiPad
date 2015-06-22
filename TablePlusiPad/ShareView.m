@@ -9,9 +9,9 @@
 #import "ShareView.h"
 #import "Vector3D.h"
 
-#define WALL_HEIGHT 600.0
-#define TABLE_WIDTH 600.0
-#define TABLE_HEIGHT 400.0
+#define WALL_HEIGHT 600
+#define TABLE_WIDTH 600
+#define TABLE_HEIGHT 400
 
 #define DISTANCE_FROM_CAMERA 800.0
 #define DISTANCE_FROM_TABLE_TO_SCREEN 0.0//300.0
@@ -24,9 +24,9 @@
     WallView* eastWallView;
     
     CATransform3D defaultTransform;
-    CATransform3D rotationMatrix;
+    CATransform3D rotation;
     float rotationAngle;
-    CATransform3D tiltMatrix;
+    CATransform3D tilt;
     float tiltAngle;
     
     CADisplayLink* displayLink;
@@ -41,8 +41,8 @@
     self.layer.sublayerTransform = defaultTransform;
     tiltAngle = 0.0;
     
-    rotationMatrix = CATransform3DIdentity;
-    tiltMatrix = CATransform3DIdentity;
+    rotation = CATransform3DIdentity;
+    tilt = CATransform3DIdentity;
     
     displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateView:)];
     [displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
@@ -59,23 +59,27 @@
     
     northWallView.frame = CGRectMake(0, 0, TABLE_WIDTH, WALL_HEIGHT);
     northWallView.layer.anchorPoint = CGPointMake(0.5, 1);
+//    northWallView.center = self.center;
     northWallView.center = CGPointMake(self.center.x, self.center.y - TABLE_HEIGHT/2.0);
     [northWallView initDefaultTransform:CATransform3DConcat(CATransform3DMakeRotation(-1 * M_PI/2, 1, 0, 0),
                                                             CATransform3DMakeTranslation(0, 0.0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN))];
     southWallView.frame = CGRectMake(0, 0, TABLE_WIDTH, WALL_HEIGHT);
     southWallView.layer.anchorPoint = CGPointMake(0.5, 0);
+//    southWallView.center = self.center;
     southWallView.center = CGPointMake(self.center.x, self.center.y + TABLE_HEIGHT/2.0);
     [southWallView initDefaultTransform:CATransform3DConcat(CATransform3DMakeRotation(M_PI/2, 1, 0, 0),
                                                             CATransform3DMakeTranslation(0, 0.0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN))];
     
     westWallView.frame = CGRectMake(0, 0, WALL_HEIGHT, TABLE_HEIGHT);
     westWallView.layer.anchorPoint = CGPointMake(1, 0.5);
+//    westWallView.center = self.center;
     westWallView.center = CGPointMake(self.center.x - TABLE_WIDTH/2.0, self.center.y);
     [westWallView initDefaultTransform:CATransform3DConcat(CATransform3DMakeRotation(M_PI/2, 0, 1, 0),
                                                            CATransform3DMakeTranslation(0.0, 0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN))];
     
     eastWallView.frame = CGRectMake(0, 0, WALL_HEIGHT, TABLE_HEIGHT);
     eastWallView.layer.anchorPoint = CGPointMake(0, 0.5);
+//    eastWallView.center = self.center;
     eastWallView.center = CGPointMake(self.center.x + TABLE_WIDTH/2.0, self.center.y);
     [eastWallView initDefaultTransform:CATransform3DConcat(CATransform3DMakeRotation(-1 * M_PI/2, 0, 1, 0),
                                                            CATransform3DMakeTranslation(0.0, 0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN))];
@@ -86,12 +90,24 @@
     westWallView.backgroundColor = [UIColor greenColor];
     eastWallView.backgroundColor = [UIColor yellowColor];
     
+    // set up default transforms
+
+    
+//    [northWallView initDefaultTransform:CATransform3DConcat(CATransform3DMakeRotation(-1 * M_PI/2, 1, 0, 0),
+//                                                            CATransform3DMakeTranslation(0, -1 * CGRectGetHeight(tableView.frame)/2.0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN))];
+//    [southWallView initDefaultTransform:CATransform3DConcat(CATransform3DMakeRotation(M_PI/2, 1, 0, 0),
+//                                                            CATransform3DMakeTranslation(0, CGRectGetHeight(tableView.frame)/2.0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN))];
+//    [westWallView initDefaultTransform:CATransform3DConcat(CATransform3DMakeRotation(M_PI/2, 0, 1, 0),
+//                                                           CATransform3DMakeTranslation(-1 * CGRectGetWidth(tableView.frame)/2.0, 0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN))];
+//    [eastWallView initDefaultTransform:CATransform3DConcat(CATransform3DMakeRotation(-1 * M_PI/2, 0, 1, 0),
+//                                                           CATransform3DMakeTranslation(CGRectGetWidth(tableView.frame)/2.0, 0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN))];
+    
     [self addSubview:tableView];
     [self addSubview:northWallView];
     [self addSubview:southWallView];
     [self addSubview:westWallView];
     [self addSubview:eastWallView];
-    //southWallView.hidden = YES;
+    southWallView.hidden = YES;
     westWallView.hidden = YES;
     eastWallView.hidden = YES;
     
@@ -101,34 +117,64 @@
 - (void)updateView:(CADisplayLink*)dl
 {
     // have to change the rotations view by view, or won't have the perspective effect. sublayerTransform should be used only for persepctive transform
-    CATransform3D t = CATransform3DConcat(rotationMatrix, tiltMatrix);
+    CATransform3D t = CATransform3DConcat(rotation, tilt);
+    float thetaX = atan2f(t.m32, t.m33); // = -1 * angleX
+    float thetaY = atan2f(-1.0 * t.m31, sqrtf(powf(t.m32, 2.0) + powf(t.m33, 2.0))); // forever = 0.0
+    float thetaZ = atan2f(t.m21, t.m11); // = rotationAngle
+    
+    Vector3D* a = [[Vector3D alloc]initWithX:1.0 Y:0.0 Z:0.0];
+    Vector3D* b = [[Vector3D alloc]initWithX:0.0 Y:1.0 Z:0.0];
+    a = [a calcMultiplyByConst:tanf(rotationAngle) * [b getModule]];
+    Vector3D* d = [a plus:b];
+    Vector3D* dp = [d calcMultiplyByConst:-1.0];
+    Vector3D* c = [[Vector3D alloc]initWithX:0.0 Y:0.0 Z:1.0];
+    [dp setModule:tanf(tiltAngle) * [c getModule]];
+    Vector3D* n = [[dp plus:c]normalize]; // the normal of the plane: seems to be correct!
+    //NSLog(@"%f, %f, %f", n.x, n.y, n.z);
+    
+    Vector3D* x = [[Vector3D alloc]initWithX:1.0 Y:0.0 Z:0.0];
+    Vector3D* temp = [[Vector3D alloc]initWithX:0.0 Y:-1.0 Z:0.0];
+    [temp setModule:tanf(rotationAngle) * [x getModule]];
+    x = [[x plus:temp]normalize]; // vector for x direction on plane
+    //NSLog(@"%f, %f, %f", x.x, x.y, x.z); // abs correct. x is never negative, however.
+    
+    Vector3D* y = [[Vector3D alloc]initWithX:0.0 Y:1.0 Z:0.0];
+    temp = [[Vector3D alloc]initWithX:1.0 Y:0.0 Z:0.0];
+    [temp setModule:tanf(rotationAngle) * [y getModule]];
+    y = [[y plus:temp]normalize]; // vector for y direction on plane
+    //NSLog(@"%f, %f, %f", y.x, y.y, y.z); // abs correct. y is never negative, however.
+    
+    thetaY = [x calcAngleToPlaneWithNormal:n];
+    thetaX = [y calcAngleToPlaneWithNormal:n];
+    
+    NSLog(@"thetaX: %f", thetaX);
     
     tableView.layer.transform = CATransform3DConcat(tableView.defaultTransform, t);
     
-    CATransform3D const northTranslationFromCenter = CATransform3DMakeTranslation(0.0, -1 * TABLE_HEIGHT/2.0, 0.0);
-    CATransform3D northConcated = CATransform3DConcat(northTranslationFromCenter, t);
-    // extract translation values
-    float northXTranslate = northConcated.m41 - northTranslationFromCenter.m41;
-    float northYTranslate = northConcated.m42 - northTranslationFromCenter.m42;
-    float northZTranslate = northConcated.m43 - northTranslationFromCenter.m43;
+    // rotate
+    float northXTranslate = -1 * sinf(thetaZ) * (TABLE_HEIGHT/2.0);
+    float northZTranslate = 0.0;
+    float northYTranslate = (-1 * (TABLE_HEIGHT/2.0 - cosf(thetaZ) * (TABLE_HEIGHT/2.0)));
     
-    NSLog(@"%f, %f, %f", northXTranslate, northYTranslate, northZTranslate);
+    // tilt
+    northZTranslate += (sinf(-1.0 * thetaX) * (TABLE_HEIGHT/2.0)); // thetaX b/c north
+    northYTranslate += -1 * (TABLE_HEIGHT/2.0 - cosf(-1.0 * thetaX) * (TABLE_HEIGHT/2.0));
     
     CATransform3D northT = CATransform3DTranslate(t, northXTranslate, northYTranslate, northZTranslate);
     northWallView.layer.transform = CATransform3DConcat(northWallView.defaultTransform, northT);
     
-    CATransform3D const southTranslationFromCenter = CATransform3DMakeTranslation(0.0, TABLE_HEIGHT/2.0, 0.0);
-    CATransform3D southConcated = CATransform3DConcat(southTranslationFromCenter, t);
-    float southXTranslate = southConcated.m41 - southTranslationFromCenter.m41;
-    float southYTranslate = southConcated.m42 - southTranslationFromCenter.m42;
-    float southZTranslate = southConcated.m43 - southTranslationFromCenter.m43;
-    
+    float southXTranslate = sinf(rotationAngle) * (TABLE_HEIGHT/2.0);
+    float southZTranslate = sinf(tiltAngle) * (TABLE_HEIGHT/2.0);
+    float southYTranslate = TABLE_HEIGHT/2.0 - cosf(tiltAngle) * (TABLE_HEIGHT/2.0) +
+    TABLE_HEIGHT/2.0 - cosf(rotationAngle) * (TABLE_HEIGHT/2.0);
     CATransform3D southT = CATransform3DTranslate(t, southXTranslate, southYTranslate, southZTranslate);
     southWallView.layer.transform = CATransform3DConcat(southWallView.defaultTransform, southT);
     
     westWallView.layer.transform = CATransform3DConcat(westWallView.defaultTransform, t);
     
     eastWallView.layer.transform = CATransform3DConcat(eastWallView.defaultTransform, t);
+    
+//   //self.layer.sublayerTransform = CATransform3DConcat(defaultTransform, CATransform3DConcat(rotation, tilt));
 }
 
 /* 
@@ -136,13 +182,13 @@
  */
 - (void)setRotationTo: (float) heading
 {
-    rotationMatrix = CATransform3DMakeRotation(heading, 0, 0, -1);
+    rotation = CATransform3DMakeRotation(heading, 0, 0, -1);
     rotationAngle = heading;
 }
 
 - (void)setTiltTo: (float) angleX :(float)angleY 
 {
-    tiltMatrix = CATransform3DConcat(CATransform3DMakeRotation(angleX, 1, 0, 0), CATransform3DMakeRotation(angleY, 0, 1, 0));
+    tilt = CATransform3DConcat(CATransform3DMakeRotation(angleX, 1, 0, 0), CATransform3DMakeRotation(angleY, 0, 1, 0));
     tiltAngle = angleX;
 }
 
