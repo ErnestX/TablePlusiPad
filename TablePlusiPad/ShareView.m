@@ -114,8 +114,8 @@
     
     NSLog(@"%f, %f, %f", northXTranslate, northYTranslate, northZTranslate);
     
-    CATransform3D northT = CATransform3DMakeTranslation(northXTranslate, northYTranslate, northZTranslate);
-    northWallView.layer.transform = CATransform3DConcat(northWallView.defaultTransform, CATransform3DConcat(northT, t));
+    CATransform3D northT = CATransform3DTranslate(t, northXTranslate, northYTranslate, northZTranslate);
+    northWallView.layer.transform = CATransform3DConcat(northWallView.defaultTransform, northT);
     
     CATransform3D const southTranslationFromCenter = CATransform3DMakeTranslation(0.0, TABLE_HEIGHT/2.0, 0.0);
     CATransform3D southConcated = CATransform3DConcat(southTranslationFromCenter, t);
