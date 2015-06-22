@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		CA38E2AA1B27AE530059C0DE /* NumberView.m in Sources */ = {isa = PBXBuildFile; fileRef = CA38E2A91B27AE530059C0DE /* NumberView.m */; };
 		CA38EB1A1B348F4C001AB23A /* Vector3D.m in Sources */ = {isa = PBXBuildFile; fileRef = CA38EB191B348F4C001AB23A /* Vector3D.m */; };
+		CA38EB1D1B34BC6B001AB23A /* Vector3DTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA38EB1C1B34BC6B001AB23A /* Vector3DTests.m */; };
 		CAC57F151B2B491900B1D7AD /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC57F141B2B491900B1D7AD /* ShareViewController.m */; };
 		CAC57F181B2B493000B1D7AD /* ShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC57F171B2B493000B1D7AD /* ShareView.m */; };
 		CAC57F1B1B2B4A1200B1D7AD /* WallView.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC57F1A1B2B4A1200B1D7AD /* WallView.m */; };
@@ -45,6 +46,8 @@
 		CA38E2A91B27AE530059C0DE /* NumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberView.m; sourceTree = "<group>"; };
 		CA38EB181B348F4C001AB23A /* Vector3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector3D.h; sourceTree = "<group>"; };
 		CA38EB191B348F4C001AB23A /* Vector3D.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vector3D.m; sourceTree = "<group>"; };
+		CA38EB1B1B34BC6B001AB23A /* Vector3DTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector3DTests.h; sourceTree = "<group>"; };
+		CA38EB1C1B34BC6B001AB23A /* Vector3DTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vector3DTests.m; sourceTree = "<group>"; };
 		CAC57F131B2B491900B1D7AD /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
 		CAC57F141B2B491900B1D7AD /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
 		CAC57F161B2B493000B1D7AD /* ShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareView.h; sourceTree = "<group>"; };
@@ -188,6 +191,8 @@
 		CACBBD241B25FB5A004A15BF /* TablePlusiPadTests */ = {
 			isa = PBXGroup;
 			children = (
+				CA38EB1B1B34BC6B001AB23A /* Vector3DTests.h */,
+				CA38EB1C1B34BC6B001AB23A /* Vector3DTests.m */,
 				CACBBD271B25FB5A004A15BF /* TablePlusiPadTests.m */,
 				CACBBD251B25FB5A004A15BF /* Supporting Files */,
 			);
@@ -367,6 +372,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CACBBD281B25FB5A004A15BF /* TablePlusiPadTests.m in Sources */,
+				CA38EB1D1B34BC6B001AB23A /* Vector3DTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

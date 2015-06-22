@@ -67,4 +67,14 @@
     return [self calcDivideByConst:[self getModule]];
 }
 
+- (float)calcDotProd:(Vector3D*)v
+{
+    return self.x * v.x + self.y * v.y + self.z * v.z;
+}
+
+- (float)calcAngleToPlaneWithNormal:(Vector3D*)n
+{
+    return asinf(fabsf([n calcDotProd:self]) / ([n getModule]*[self getModule]));
+}
+
 @end

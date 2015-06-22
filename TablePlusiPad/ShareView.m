@@ -124,7 +124,30 @@
     
     Vector3D* a = [[Vector3D alloc]initWithX:1.0 Y:0.0 Z:0.0];
     Vector3D* b = [[Vector3D alloc]initWithX:0.0 Y:1.0 Z:0.0];
-    [a calcMultiplyByConst:tanf(rotationAngle) * [b getModule]];
+    a = [a calcMultiplyByConst:tanf(rotationAngle) * [b getModule]];
+    Vector3D* d = [a plus:b];
+    Vector3D* dp = [d calcMultiplyByConst:-1.0];
+    Vector3D* c = [[Vector3D alloc]initWithX:0.0 Y:0.0 Z:1.0];
+    [dp setModule:tanf(tiltAngle) * [c getModule]];
+    Vector3D* n = [[dp plus:c]normalize]; // the normal of the plane: seems to be correct!
+    //NSLog(@"%f, %f, %f", n.x, n.y, n.z);
+    
+    Vector3D* x = [[Vector3D alloc]initWithX:1.0 Y:0.0 Z:0.0];
+    Vector3D* temp = [[Vector3D alloc]initWithX:0.0 Y:-1.0 Z:0.0];
+    [temp setModule:tanf(rotationAngle) * [x getModule]];
+    x = [[x plus:temp]normalize]; // vector for x direction on plane
+    //NSLog(@"%f, %f, %f", x.x, x.y, x.z); // abs correct. x is never negative, however.
+    
+    Vector3D* y = [[Vector3D alloc]initWithX:0.0 Y:1.0 Z:0.0];
+    temp = [[Vector3D alloc]initWithX:1.0 Y:0.0 Z:0.0];
+    [temp setModule:tanf(rotationAngle) * [y getModule]];
+    y = [[y plus:temp]normalize]; // vector for y direction on plane
+    //NSLog(@"%f, %f, %f", y.x, y.y, y.z); // abs correct. y is never negative, however.
+    
+    thetaY = [x calcAngleToPlaneWithNormal:n];
+    thetaX = [y calcAngleToPlaneWithNormal:n];
+    
+    NSLog(@"thetaX: %f", thetaX);
     
     tableView.layer.transform = CATransform3DConcat(tableView.defaultTransform, t);
     
@@ -134,7 +157,7 @@
     float northYTranslate = (-1 * (TABLE_HEIGHT/2.0 - cosf(thetaZ) * (TABLE_HEIGHT/2.0)));
     
     // tilt
-    northZTranslate += sinf(-1.0 * thetaX) * (TABLE_HEIGHT/2.0); // thetaX b/c north
+    northZTranslate += (sinf(-1.0 * thetaX) * (TABLE_HEIGHT/2.0)); // thetaX b/c north
     northYTranslate += -1 * (TABLE_HEIGHT/2.0 - cosf(-1.0 * thetaX) * (TABLE_HEIGHT/2.0));
     
     CATransform3D northT = CATransform3DTranslate(t, northXTranslate, northYTranslate, northZTranslate);
