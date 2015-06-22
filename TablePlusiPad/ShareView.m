@@ -7,7 +7,6 @@
 //
 
 #import "ShareView.h"
-#import "Vector3D.h"
 
 #define WALL_HEIGHT 600
 #define TABLE_WIDTH 600
@@ -118,13 +117,11 @@
 {
     // have to change the rotations view by view, or won't have the perspective effect. sublayerTransform should be used only for persepctive transform
     CATransform3D t = CATransform3DConcat(rotation, tilt);
-    float thetaX = atan2f(t.m32, t.m33); // = -1 * angleX
+    float thetaX = atan2f(t.m32, t.m33);
     float thetaY = atan2f(-1.0 * t.m31, sqrtf(powf(t.m32, 2.0) + powf(t.m33, 2.0))); // forever = 0.0
     float thetaZ = atan2f(t.m21, t.m11); // = rotationAngle
     
-    Vector3D* a = [[Vector3D alloc]initWithX:1.0 Y:0.0 Z:0.0];
-    Vector3D* b = [[Vector3D alloc]initWithX:0.0 Y:1.0 Z:0.0];
-    [a calcMultiplyByConst:tanf(rotationAngle) * [b getModule]];
+    NSLog(@"thetaX:%f", thetaX);
     
     tableView.layer.transform = CATransform3DConcat(tableView.defaultTransform, t);
     
@@ -154,17 +151,16 @@
 //   //self.layer.sublayerTransform = CATransform3DConcat(defaultTransform, CATransform3DConcat(rotation, tilt));
 }
 
-/* 
- heading is in radian
- */
 - (void)setRotationTo: (float) heading
 {
+//    NSLog(@"heading: %f", heading);
     rotation = CATransform3DMakeRotation(heading, 0, 0, -1);
     rotationAngle = heading;
 }
 
 - (void)setTiltTo: (float) angleX :(float)angleY 
 {
+    NSLog(@"angleX: %f", angleX);
     tilt = CATransform3DConcat(CATransform3DMakeRotation(angleX, 1, 0, 0), CATransform3DMakeRotation(angleY, 0, 1, 0));
     tiltAngle = angleX;
 }
