@@ -114,11 +114,51 @@
     tilt = CATransform3DConcat(CATransform3DMakeRotation(angleX, 1, 0, 0), CATransform3DMakeRotation(angleY, 0, 1, 0));
 }
 
-//- (UIView*)hitTest:(CGPoint)point withEvent:(UIEvent *)event
-//{
-//    
-//    // TODO: OVERWRITE!
-//    return [super hitTest:point withEvent:event];
-//}
+- (UIView*)hitTest:(CGPoint)point withEvent:(UIEvent *)event
+{
+    // TODO: OVERWRITE!
+    
+    CGPoint p = [northWallView convertPoint:point fromView:self];
+    UIView* temp = [northWallView hitTest:p withEvent:event];
+    if (temp != nil && temp != northWallView) {
+//        NSLog(@"north");
+        return temp;
+    }
+    
+    p = [southWallView convertPoint:point fromView:self];
+    temp = [southWallView hitTest:p withEvent:event];
+    if (temp != nil && temp != southWallView) {
+//        NSLog(@"south");
+        return temp;
+    }
+    
+    p = [westWallView convertPoint:point fromView:self];
+    temp = [westWallView hitTest:p withEvent:event];
+    if (temp != nil && temp != westWallView) {
+//        NSLog(@"west");
+        return temp;
+    }
+    
+    p = [eastWallView convertPoint:point fromView:self];
+    temp = [eastWallView hitTest:p withEvent:event];
+    if (temp != nil && temp != eastWallView) {
+//        NSLog(@"east");
+        return temp;
+    }
+    
+    p = [tableView convertPoint:point fromView:self];
+    temp = [tableView hitTest:p withEvent:event];
+    if (temp != nil && temp != tableView) {
+//        NSLog(@"table");
+        return temp;
+    }
+    
+    if ([self pointInside:point withEvent:event]) {
+//        NSLog(@"self");
+        return self;
+    }
+    
+    return nil;
+}
 
 @end
