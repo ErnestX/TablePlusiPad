@@ -116,12 +116,9 @@
     
     tableView.layer.transform = CATransform3DConcat(tableView.defaultTransform, t);
     
-    float zTranslate = sinf(-1.0 * tiltAngle) * (TABLE_HEIGHT/2.0);
-    float yTranslate = -1 * (TABLE_HEIGHT/2.0 - cosf(-1.0 * tiltAngle) * (TABLE_HEIGHT/2.0));
-    CATransform3D northT = CATransform3DTranslate(t, 0, yTranslate, zTranslate);
-    northWallView.layer.transform = CATransform3DConcat(northWallView.defaultTransform, northT);
+    northWallView.layer.transform = CATransform3DConcat(northWallView.defaultTransform, t);
     // transform
-    
+    //cosf(tiltAngle) *
     southWallView.layer.transform = CATransform3DConcat(southWallView.defaultTransform, t);
     
     westWallView.layer.transform = CATransform3DConcat(westWallView.defaultTransform, t);
@@ -139,7 +136,6 @@
 
 - (void)setTiltTo: (float) angleX :(float)angleY 
 {
-    NSLog(@"angleX: %f", angleX);
     tilt = CATransform3DConcat(CATransform3DMakeRotation(angleX, 1, 0, 0), CATransform3DMakeRotation(angleY, 0, 1, 0));
     tiltAngle = angleX;
 }
