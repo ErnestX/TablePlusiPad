@@ -51,35 +51,18 @@
     
     tableView.frame = CGRectMake(0, 0, TABLE_WIDTH, TABLE_HEIGHT);
     tableView.center = self.center;
-    [tableView initDefaultTransform:CATransform3DMakeTranslation(0.0, 0.0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN)];
-    
     northWallView.frame = CGRectMake(0, 0, TABLE_WIDTH, WALL_HEIGHT);
     northWallView.layer.anchorPoint = CGPointMake(0.5, 1);
-//    northWallView.center = self.center;
-    northWallView.center = CGPointMake(self.center.x, self.center.y - CGRectGetHeight(tableView.frame)/2.0);
-    [northWallView initDefaultTransform:CATransform3DConcat(CATransform3DMakeRotation(-1 * M_PI/2, 1, 0, 0),
-                                                            CATransform3DMakeTranslation(0, 0.0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN))];
+    northWallView.center = self.center;
     southWallView.frame = CGRectMake(0, 0, TABLE_WIDTH, WALL_HEIGHT);
     southWallView.layer.anchorPoint = CGPointMake(0.5, 0);
-//    southWallView.center = self.center;
-    southWallView.center = CGPointMake(self.center.x, self.center.y + CGRectGetHeight(tableView.frame)/2.0);
-    [southWallView initDefaultTransform:CATransform3DConcat(CATransform3DMakeRotation(M_PI/2, 1, 0, 0),
-                                                            CATransform3DMakeTranslation(0, 0.0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN))];
-    
+    southWallView.center = self.center;
     westWallView.frame = CGRectMake(0, 0, WALL_HEIGHT, TABLE_HEIGHT);
     westWallView.layer.anchorPoint = CGPointMake(1, 0.5);
-//    westWallView.center = self.center;
-    westWallView.center = CGPointMake(self.center.x - CGRectGetWidth(tableView.frame)/2.0, self.center.y);
-    [westWallView initDefaultTransform:CATransform3DConcat(CATransform3DMakeRotation(M_PI/2, 0, 1, 0),
-                                                           CATransform3DMakeTranslation(0.0, 0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN))];
-    
+    westWallView.center = self.center;
     eastWallView.frame = CGRectMake(0, 0, WALL_HEIGHT, TABLE_HEIGHT);
     eastWallView.layer.anchorPoint = CGPointMake(0, 0.5);
-//    eastWallView.center = self.center;
-    eastWallView.center = CGPointMake(self.center.x + CGRectGetWidth(tableView.frame)/2.0, self.center.y);
-    [eastWallView initDefaultTransform:CATransform3DConcat(CATransform3DMakeRotation(-1 * M_PI/2, 0, 1, 0),
-                                                           CATransform3DMakeTranslation(0.0, 0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN))];
-    
+    eastWallView.center = self.center;
     tableView.backgroundColor = [UIColor lightGrayColor];
     northWallView.backgroundColor = [UIColor redColor];
     southWallView.backgroundColor = [UIColor blueColor];
@@ -87,16 +70,16 @@
     eastWallView.backgroundColor = [UIColor yellowColor];
     
     // set up default transforms
-
+    [tableView initDefaultTransform:CATransform3DMakeTranslation(0.0, 0.0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN)];
     
-//    [northWallView initDefaultTransform:CATransform3DConcat(CATransform3DMakeRotation(-1 * M_PI/2, 1, 0, 0),
-//                                                            CATransform3DMakeTranslation(0, -1 * CGRectGetHeight(tableView.frame)/2.0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN))];
-//    [southWallView initDefaultTransform:CATransform3DConcat(CATransform3DMakeRotation(M_PI/2, 1, 0, 0),
-//                                                            CATransform3DMakeTranslation(0, CGRectGetHeight(tableView.frame)/2.0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN))];
-//    [westWallView initDefaultTransform:CATransform3DConcat(CATransform3DMakeRotation(M_PI/2, 0, 1, 0),
-//                                                           CATransform3DMakeTranslation(-1 * CGRectGetWidth(tableView.frame)/2.0, 0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN))];
-//    [eastWallView initDefaultTransform:CATransform3DConcat(CATransform3DMakeRotation(-1 * M_PI/2, 0, 1, 0),
-//                                                           CATransform3DMakeTranslation(CGRectGetWidth(tableView.frame)/2.0, 0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN))];
+    [northWallView initDefaultTransform:CATransform3DConcat(CATransform3DMakeRotation(-1 * M_PI/2, 1, 0, 0),
+                                                            CATransform3DMakeTranslation(0, -1 * CGRectGetHeight(tableView.frame)/2.0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN))];
+    [southWallView initDefaultTransform:CATransform3DConcat(CATransform3DMakeRotation(M_PI/2, 1, 0, 0),
+                                                            CATransform3DMakeTranslation(0, CGRectGetHeight(tableView.frame)/2.0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN))];
+    [westWallView initDefaultTransform:CATransform3DConcat(CATransform3DMakeRotation(M_PI/2, 0, 1, 0),
+                                                           CATransform3DMakeTranslation(-1 * CGRectGetWidth(tableView.frame)/2.0, 0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN))];
+    [eastWallView initDefaultTransform:CATransform3DConcat(CATransform3DMakeRotation(-1 * M_PI/2, 0, 1, 0),
+                                                           CATransform3DMakeTranslation(CGRectGetWidth(tableView.frame)/2.0, 0, -1 * DISTANCE_FROM_TABLE_TO_SCREEN))];
     
     [self addSubview:tableView];
     [self addSubview:northWallView];
@@ -130,5 +113,12 @@
 {
     tilt = CATransform3DConcat(CATransform3DMakeRotation(angleX, 1, 0, 0), CATransform3DMakeRotation(angleY, 0, 1, 0));
 }
+
+//- (UIView*)hitTest:(CGPoint)point withEvent:(UIEvent *)event
+//{
+//    
+//    // TODO: OVERWRITE!
+//    return [super hitTest:point withEvent:event];
+//}
 
 @end
