@@ -37,7 +37,7 @@
     defaultTransform = t;
     self.layer.transform = t;
     
-    self.layer.doubleSided = NO;
+    //self.layer.doubleSided = NO;
 }
 
 - (void)setFrame:(CGRect)frame
@@ -49,11 +49,6 @@
 - (void)testButtonPressed:(id)sender
 {
     NSLog(@"test button pressed");
-}
-
-- (void)initRotationCenter:(CGRect)c
-{
-    
 }
 
 @end

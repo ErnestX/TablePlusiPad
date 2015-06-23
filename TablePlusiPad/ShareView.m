@@ -23,8 +23,8 @@
     WallView* eastWallView;
     
     CATransform3D defaultTransform;
-    CATransform3D rotation;
-    CATransform3D tilt;
+    CATransform3D rotationMatrix;
+    CATransform3D tiltMatrix;
     
     CADisplayLink* displayLink;
 }
@@ -37,8 +37,8 @@
     defaultTransform = perspectiveT;
     self.layer.sublayerTransform = defaultTransform;
     
-    rotation = CATransform3DIdentity;
-    tilt = CATransform3DIdentity;
+    rotationMatrix = CATransform3DIdentity;
+    tiltMatrix = CATransform3DIdentity;
     
     displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateView:)];
     [displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSDefaultRunLoopMode];
@@ -93,71 +93,108 @@
 - (void)updateView:(CADisplayLink*)dl
 {
     // have to change the rotations view by view, or won't have the perspective effect. sublayerTransform should be used only for persepctive transform
-    CATransform3D t = CATransform3DConcat(rotation, tilt);
+    CATransform3D t = CATransform3DConcat(rotationMatrix, tiltMatrix);
     
     tableView.layer.transform = CATransform3DConcat(tableView.defaultTransform, t);
     northWallView.layer.transform = CATransform3DConcat(northWallView.defaultTransform, t);
     southWallView.layer.transform = CATransform3DConcat(southWallView.defaultTransform, t);
     westWallView.layer.transform = CATransform3DConcat(westWallView.defaultTransform, t);
     eastWallView.layer.transform = CATransform3DConcat(eastWallView.defaultTransform, t);
-   //self.layer.sublayerTransform = CATransform3DConcat(defaultTransform, CATransform3DConcat(rotation, tilt));
+    
+//    NSLog(@"N:%f, S:%f, W:%f, E:%f, T:%f",
+//          northWallView.layer.transform.m43,
+//          southWallView.layer.transform.m43,
+//          westWallView.layer.transform.m43,
+//          eastWallView.layer.transform.m43,
+//          tableView.layer.transform.m43);
 }
 
 - (void)setRotationTo: (float) heading
 {
-//    NSLog(@"heading: %f", heading);
-    rotation = CATransform3DMakeRotation(heading, 0, 0, -1);
+    rotationMatrix = CATransform3DMakeRotation(heading, 0, 0, -1);
 }
 
 - (void)setTiltTo: (float) angleX :(float)angleY 
 {
-    tilt = CATransform3DConcat(CATransform3DMakeRotation(angleX, 1, 0, 0), CATransform3DMakeRotation(angleY, 0, 1, 0));
+    tiltMatrix = CATransform3DConcat(CATransform3DMakeRotation(angleX, 1, 0, 0), CATransform3DMakeRotation(angleY, 0, 1, 0));
 }
 
 - (UIView*)hitTest:(CGPoint)point withEvent:(UIEvent *)event
 {
-    // TODO: OVERWRITE!
+    NSMutableSet* touchedSurfaces = [NSMutableSet set];
     
-    CGPoint p = [northWallView convertPoint:point fromView:self];
-    UIView* temp = [northWallView hitTest:p withEvent:event];
-    if (temp != nil && temp != northWallView) {
-//        NSLog(@"north");
-        return temp;
+    CGPoint np = [northWallView convertPoint:point fromView:self];
+    UIView* nTemp = [northWallView hitTest:np withEvent:event];
+    if (nTemp != nil) {
+        //NSLog(@"north wall");
+        //return nTemp;
+        [touchedSurfaces addObject:northWallView];
     }
     
-    p = [southWallView convertPoint:point fromView:self];
-    temp = [southWallView hitTest:p withEvent:event];
-    if (temp != nil && temp != southWallView) {
-//        NSLog(@"south");
-        return temp;
+    CGPoint sp = [southWallView convertPoint:point fromView:self];
+    UIView* sTemp = [southWallView hitTest:sp withEvent:event];
+    if (sTemp != nil) {
+        //NSLog(@"south wall");
+        //return sTemp;
+        [touchedSurfaces addObject:southWallView];
     }
     
-    p = [westWallView convertPoint:point fromView:self];
-    temp = [westWallView hitTest:p withEvent:event];
-    if (temp != nil && temp != westWallView) {
-//        NSLog(@"west");
-        return temp;
+    CGPoint wp = [westWallView convertPoint:point fromView:self];
+    UIView* wTemp = [westWallView hitTest:wp withEvent:event];
+    if (wTemp != nil) {
+        //NSLog(@"west wall");
+        //return wTemp;
+        [touchedSurfaces addObject:westWallView];
     }
     
-    p = [eastWallView convertPoint:point fromView:self];
-    temp = [eastWallView hitTest:p withEvent:event];
-    if (temp != nil && temp != eastWallView) {
-//        NSLog(@"east");
-        return temp;
+    CGPoint ep = [eastWallView convertPoint:point fromView:self];
+    UIView* eTemp = [eastWallView hitTest:ep withEvent:event];
+    if (eTemp != nil) {
+        //NSLog(@"east wall");
+//        return eTemp;
+        [touchedSurfaces addObject:eastWallView];
     }
     
-    p = [tableView convertPoint:point fromView:self];
-    temp = [tableView hitTest:p withEvent:event];
-    if (temp != nil && temp != tableView) {
-//        NSLog(@"table");
-        return temp;
+    CGPoint tp = [tableView convertPoint:point fromView:self];
+    UIView* tTemp = [tableView hitTest:tp withEvent:event];
+    if (tTemp != nil) {
+        //NSLog(@"table");
+  //      return tTemp;
+        [touchedSurfaces addObject:tableView];
+    }
+    
+    float minZ = INFINITY;
+    UIView* viewToReturn;
+    for (UIView* v in touchedSurfaces) {
+        if (v.layer.transform.m43 < minZ) {
+            minZ = v.layer.transform.m43;
+            if (v == northWallView) {
+                NSLog(@"chose N");
+                viewToReturn = nTemp;
+            } else if (v == southWallView) {
+                NSLog(@"chose S");
+                viewToReturn = sTemp;
+            } else if (v == westWallView) {
+                NSLog(@"chose W");
+                viewToReturn = wTemp;
+            } else if (v == eastWallView) {
+                NSLog(@"chose E");
+                viewToReturn = eTemp;
+            } else if (v == tableView) {
+                NSLog(@"chose Table");
+                viewToReturn = tTemp;
+            }
+        }
+    }
+    
+    if (viewToReturn != nil) {
+        return viewToReturn;
     }
     
     if ([self pointInside:point withEvent:event]) {
-//        NSLog(@"self");
+        NSLog(@"share view");
         return self;
     }
-    
     return nil;
 }
 
