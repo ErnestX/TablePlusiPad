@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WallViewDelegate.h"
 
 @interface WallView : UIView
 
 @property (readonly) CATransform3D defaultTransform;
-@property (readonly) CGRect rotationCenter;
+@property UIViewController<WallViewDelegate> *delegate;
 
 - (void)initDefaultTransform: (CATransform3D)t;
 

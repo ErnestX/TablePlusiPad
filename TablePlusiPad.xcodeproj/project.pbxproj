@@ -42,6 +42,8 @@
 		8658723E976F0BCBCAACA385 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA38E2A81B27AE520059C0DE /* NumberView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberView.h; sourceTree = "<group>"; };
 		CA38E2A91B27AE530059C0DE /* NumberView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberView.m; sourceTree = "<group>"; };
+		CA38EB1E1B39C5D9001AB23A /* WallViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WallViewDelegate.h; sourceTree = "<group>"; };
+		CA38EB221B39F0F5001AB23A /* WallName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WallName.h; sourceTree = "<group>"; };
 		CAC57F131B2B491900B1D7AD /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
 		CAC57F141B2B491900B1D7AD /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
 		CAC57F161B2B493000B1D7AD /* ShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareView.h; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 		CAC57F121B2B47B100B1D7AD /* ShareMode */ = {
 			isa = PBXGroup;
 			children = (
+				CA38EB1E1B39C5D9001AB23A /* WallViewDelegate.h */,
 				CAC57F131B2B491900B1D7AD /* ShareViewController.h */,
 				CAC57F141B2B491900B1D7AD /* ShareViewController.m */,
 				CAC57F161B2B493000B1D7AD /* ShareView.h */,
@@ -130,6 +133,7 @@
 				CAC57F1A1B2B4A1200B1D7AD /* WallView.m */,
 				CAC57F281B2CA54500B1D7AD /* LowPassFilter.h */,
 				CAC57F291B2CA54500B1D7AD /* LowPassFilter.m */,
+				CA38EB221B39F0F5001AB23A /* WallName.h */,
 			);
 			name = ShareMode;
 			sourceTree = "<group>";

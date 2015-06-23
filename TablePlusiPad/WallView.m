@@ -13,7 +13,7 @@
 }
 
 @synthesize defaultTransform;
-@synthesize rotationCenter;
+@synthesize delegate;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -37,7 +37,7 @@
     defaultTransform = t;
     self.layer.transform = t;
     
-    //self.layer.doubleSided = NO;
+    self.layer.doubleSided = NO;
 }
 
 - (void)setFrame:(CGRect)frame
@@ -48,7 +48,7 @@
          
 - (void)testButtonPressed:(id)sender
 {
-    NSLog(@"test button pressed");
+    [self.delegate testButtonPressed:self];
 }
 
 @end

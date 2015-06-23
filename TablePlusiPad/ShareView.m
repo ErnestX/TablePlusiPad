@@ -100,13 +100,6 @@
     southWallView.layer.transform = CATransform3DConcat(southWallView.defaultTransform, t);
     westWallView.layer.transform = CATransform3DConcat(westWallView.defaultTransform, t);
     eastWallView.layer.transform = CATransform3DConcat(eastWallView.defaultTransform, t);
-    
-//    NSLog(@"N:%f, S:%f, W:%f, E:%f, T:%f",
-//          northWallView.layer.transform.m43,
-//          southWallView.layer.transform.m43,
-//          westWallView.layer.transform.m43,
-//          eastWallView.layer.transform.m43,
-//          tableView.layer.transform.m43);
 }
 
 - (void)setRotationTo: (float) heading
@@ -126,40 +119,30 @@
     CGPoint np = [northWallView convertPoint:point fromView:self];
     UIView* nTemp = [northWallView hitTest:np withEvent:event];
     if (nTemp != nil) {
-        //NSLog(@"north wall");
-        //return nTemp;
         [touchedSurfaces addObject:northWallView];
     }
     
     CGPoint sp = [southWallView convertPoint:point fromView:self];
     UIView* sTemp = [southWallView hitTest:sp withEvent:event];
     if (sTemp != nil) {
-        //NSLog(@"south wall");
-        //return sTemp;
         [touchedSurfaces addObject:southWallView];
     }
     
     CGPoint wp = [westWallView convertPoint:point fromView:self];
     UIView* wTemp = [westWallView hitTest:wp withEvent:event];
     if (wTemp != nil) {
-        //NSLog(@"west wall");
-        //return wTemp;
         [touchedSurfaces addObject:westWallView];
     }
     
     CGPoint ep = [eastWallView convertPoint:point fromView:self];
     UIView* eTemp = [eastWallView hitTest:ep withEvent:event];
     if (eTemp != nil) {
-        //NSLog(@"east wall");
-//        return eTemp;
         [touchedSurfaces addObject:eastWallView];
     }
     
     CGPoint tp = [tableView convertPoint:point fromView:self];
     UIView* tTemp = [tableView hitTest:tp withEvent:event];
     if (tTemp != nil) {
-        //NSLog(@"table");
-  //      return tTemp;
         [touchedSurfaces addObject:tableView];
     }
     
@@ -169,19 +152,19 @@
         if (v.layer.transform.m43 < minZ) {
             minZ = v.layer.transform.m43;
             if (v == northWallView) {
-                NSLog(@"chose N");
+//                NSLog(@"chose N");
                 viewToReturn = nTemp;
             } else if (v == southWallView) {
-                NSLog(@"chose S");
+//                NSLog(@"chose S");
                 viewToReturn = sTemp;
             } else if (v == westWallView) {
-                NSLog(@"chose W");
+//                NSLog(@"chose W");
                 viewToReturn = wTemp;
             } else if (v == eastWallView) {
-                NSLog(@"chose E");
+//                NSLog(@"chose E");
                 viewToReturn = eTemp;
             } else if (v == tableView) {
-                NSLog(@"chose Table");
+//                NSLog(@"chose Table");
                 viewToReturn = tTemp;
             }
         }
@@ -192,7 +175,7 @@
     }
     
     if ([self pointInside:point withEvent:event]) {
-        NSLog(@"share view");
+//        NSLog(@"share view");
         return self;
     }
     return nil;

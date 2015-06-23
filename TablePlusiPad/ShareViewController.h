@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WallViewDelegate.h"
 
-@interface ShareViewController : UIViewController
+@interface ShareViewController : UIViewController <WallViewDelegate>
 
 @end

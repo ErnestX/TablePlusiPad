@@ -47,7 +47,7 @@
 
 - (void)testButtonPressed:(id)sender
 {
-    NSLog(@"test button pressed");
+    NSLog(@"table button pressed");
 }
 
 @end

@@ -29,6 +29,12 @@
     
     LowPassFilter* tiltFilter;
     LowPassFilter* rotateFilter;
+    
+    TableView* tableView;
+    WallView* northWallView;
+    WallView* southWallView;
+    WallView* westWallView;
+    WallView* eastWallView;
 }
 
 - (void) viewDidLoad
@@ -50,12 +56,18 @@
     static float array2[ROTATE_BUFFER_SIZE];
     rotateFilter = [[LowPassFilter alloc]initBufferWithArray:array2 ofSize:ROTATE_BUFFER_SIZE withData:locationManager.heading.trueHeading];
     
-    TableView* tv = [[TableView alloc]initWithFrame:CGRectZero];
-    WallView* nwv = [[WallView alloc]initWithFrame:CGRectZero];
-    WallView* swv = [[WallView alloc]initWithFrame:CGRectZero];
-    WallView* wwv = [[WallView alloc]initWithFrame:CGRectZero];
-    WallView* ewv = [[WallView alloc]initWithFrame:CGRectZero];
-    [shareView customInitWithTableView:tv northWallView:nwv southWallView:swv westWallView:wwv eastWallView:ewv];
+    tableView = [[TableView alloc]initWithFrame:CGRectZero];
+    northWallView = [[WallView alloc]initWithFrame:CGRectZero];
+    southWallView = [[WallView alloc]initWithFrame:CGRectZero];
+    westWallView = [[WallView alloc]initWithFrame:CGRectZero];
+    eastWallView = [[WallView alloc]initWithFrame:CGRectZero];
+    
+    northWallView.delegate = self;
+    southWallView.delegate = self;
+    westWallView.delegate = self;
+    eastWallView.delegate = self;
+    
+    [shareView customInitWithTableView:tableView northWallView:northWallView southWallView:southWallView westWallView:westWallView eastWallView:eastWallView];
 }
 
 - (void) handleTilt:(NSTimer*) timer
@@ -78,6 +90,19 @@
     oldH = newH;
     
     [shareView setRotationTo:[rotateFilter filterData: newH]/360.0*2.0*M_PI]; // negate to turn to the opposite direction the iPad is turning
+}
+
+- (void)testButtonPressed:(UIView*)view
+{
+    if (view == northWallView) {
+        NSLog(@"north test button pressed");
+    } else if (view == southWallView) {
+        NSLog(@"south test button pressed");
+    } else if (view == westWallView) {
+        NSLog(@"west test button pressed");
+    } else if (view == eastWallView) {
+        NSLog(@"east test button pressed");
+    }
 }
 
 @end
